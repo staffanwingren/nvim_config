@@ -17,5 +17,11 @@ Execute `:PackerCompile` followed by `:PackerInstall`.
 
 ## Issues
 
-Treesitter is unable to find Visual Studio installation (for Clang).
+### Treesitter parser installation
+
+> Treesitter is unable to find Visual Studio installation.
+
 Saw this on computer with VS2022 installed.
+
+Installed Build Tools and C++/CLI for VS2022 and, eventually, it
+started working.
