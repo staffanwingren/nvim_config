@@ -1,3 +1,7 @@
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.o.scrolloff = 8
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.scrolloff = 8
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 0
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
