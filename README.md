@@ -3,6 +3,9 @@ My Neovim config
 
 ## Prerequisites
 
+- Python: Python should be available in the PATH.
+- Pynvim: Neovim Python client.
+  Installation: `pip install pynvim`
 - Packer.nvim: Package manager used to fetch plugins.
   Installation: `git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data\site\pack\packer\start\packer.nvim"`
 - LLVM (CLang): Required by Treesitter to compile parsers.
