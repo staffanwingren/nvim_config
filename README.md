@@ -10,6 +10,8 @@ My Neovim config
   Notes: Need to run `:PackerCompile` & `:PackerInstall` to fetch specified plugins.
 - Ripgrep: Required by Telescope to perform grep searches
   Installation: `choco install ripgrep`
+- 7Zip: For extracting, obviously, but can't remember exactly what.
+- Wget: Not sure it is needed but marked as _Error_ by `:checkhealth` if missing.
 
 ##  Setup
 
@@ -25,3 +27,7 @@ Saw this on computer with VS2022 installed.
 
 Installed Build Tools and C++/CLI for VS2022 and, eventually, it
 started working.
+
+### DAP
+
+Have been unable to get debugging working for either C# or Rust - on Windows or WSL2.
