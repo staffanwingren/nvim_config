@@ -23,7 +23,7 @@ lsp.on_attach(function(_, bufnr)
     bind('n', '<leader>io', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
     bind('n', '<leader>ip', '<cmd>lua vim.diagnostic.goto_prev())<cr>', opts)
     bind('n', '<leader>in', '<cmd>lua vim.diagnostic.goto_next())<cr>', opts)
-    bind('n', '<leader>f', ':LspZeroFormat<cr>', opts)
+    bind('n', '<leader>rf', ':LspZeroFormat<cr>', opts)
 end)
 
 local cmp = require('cmp')
