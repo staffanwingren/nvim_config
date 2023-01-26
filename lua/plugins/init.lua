@@ -41,4 +41,6 @@ return require('packer').startup(function(use)
     }
     use 'mfussenegger/nvim-lint'
     use 'mfussenegger/nvim-dap'
+
+    use 'tpope/vim-fugitive'
 end)
