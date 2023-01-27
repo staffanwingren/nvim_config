@@ -39,8 +39,8 @@ return require('packer').startup(function(use)
         {'rafamadriz/friendly-snippets'},
       }
     }
-    use 'mfussenegger/nvim-lint'
     use 'mfussenegger/nvim-dap'
+    use 'jose-elias-alvarez/null-ls.nvim'
 
     use 'tpope/vim-fugitive'
 end)
