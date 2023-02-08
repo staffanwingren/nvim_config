@@ -12,6 +12,7 @@ return require('packer').startup(function(use)
         'nvim-tree/nvim-web-devicons',
       }
     }
+    use('tpope/vim-sleuth')
     use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
     use {
         'nvim-telescope/telescope.nvim',
