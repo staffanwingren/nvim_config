@@ -33,6 +33,4 @@ started working.
 
 ### DAP
 
-Have been unable to get debugging working for either C# or Rust - on Windows or WSL2.
-At least for Rust the debugger ends with:
-> error: 'Content-Length' is not a valid command.
+Still to be tested/resolved is attaching to process, debugging javascript and debugging tests.

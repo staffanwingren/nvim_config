@@ -1,12 +1,11 @@
--- disable netrw at the very start of your init.lua (strongly advised)
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+vim.g.netrw_menu=0
+vim.g.netrw_banner=0
+vim.g.netrw_preview=1
+vim.g.netrw_liststyle=3
+--vim.g.netrw_keepdir=1
+vim.g.netrw_winsize=25
+vim.g.netrw_bufsettings='noma nomod nu nowrap ro nobl'
 
-require("nvim-tree").setup({
-    view = {
-        width = 50,
-    },
-    renderer = {
-        full_name = true,
-    },
-})
+-- Keymap
+vim.keymap.set('n', '<Leader>e', ':Lexplore<CR>')
+vim.keymap.set('n', '<Leader>E', ':Lexplore %:h<CR><CR>')

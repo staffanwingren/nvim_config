@@ -1,12 +1,8 @@
-vim.g.mapleader = " "
+vim.g.mapleader = "\\"
 
 -- General
 --vim.keymap.set('n', '<C-v>', '<C-q>')
 vim.keymap.set('v', '<Leader>p', '"_dP')
-
---  NvimTree
-vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>')
-vim.keymap.set('n', '<Leader>E', ':NvimTreeFindFile<CR>')
 
 -- Telescope
 vim.keymap.set('n', '<leader>tf', ':Telescope find_files<CR>')

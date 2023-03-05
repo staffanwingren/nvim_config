@@ -6,12 +6,8 @@
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     use 'morhetz/gruvbox'
-    use {
-      'nvim-tree/nvim-tree.lua',
-      requires = {
-        'nvim-tree/nvim-web-devicons',
-      }
-    }
+    use 'ryanoasis/vim-devicons'
+
     use('tpope/vim-sleuth')
     use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
     use {
@@ -19,6 +15,7 @@ return require('packer').startup(function(use)
         tag = '0.1.0',
         requires = {{ 'nvim-lua/plenary.nvim' }}
     }
+
     use {
       'VonHeikemen/lsp-zero.nvim',
       requires = {
