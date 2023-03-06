@@ -40,5 +40,6 @@ return require('packer').startup(function(use)
     use 'mfussenegger/nvim-dap'
     use 'jose-elias-alvarez/null-ls.nvim'
 
+    use 'tpope/vim-surround'
     use 'tpope/vim-fugitive'
 end)
