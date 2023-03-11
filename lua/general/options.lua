@@ -8,8 +8,3 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 vim.opt.signcolumn = 'yes'
-
--- dotnet build error format
--- errorformat+=%f(%l,%c):\ %t%\\w%\\+\ %m\ [%.%#
-vim.opt.errorformat:append('%f(%l\\,%c): %t%\\w%\\+ %m [%.%#')
-vim.opt.makeprg = 'dotnet build --nologo -v q -clp:NoSummary'
