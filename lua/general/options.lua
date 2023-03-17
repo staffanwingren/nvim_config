@@ -8,3 +8,6 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 vim.opt.signcolumn = 'yes'
+
+vim.opt.grepprg = 'rg --vimgrep'
+vim.opt.grepformat = '%f:%l:%c:%m'
