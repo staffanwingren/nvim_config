@@ -7,39 +7,40 @@ lsp.set_preferences({
     set_lsp_keymaps = false
 })
 
-lsp.on_attach(function(_, bufnr)
-    local opts = { buffer = bufnr, remap = false }
-    local bind = vim.keymap.set
+vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+    callback = function(ev)
+        local opts = { buffer = ev.buf, remap = false }
 
-    bind('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-    bind('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-    bind('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-    bind('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-    bind('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-    bind('n', '<leader>rr', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-    bind('n', '<leader>ro', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-    bind('n', '<leader>ho', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-    bind('n', '<leader>hs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-    bind('n', '<leader>io', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
-    bind('n', '<leader>ip', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
-    bind('n', '<leader>in', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
-    bind('n', '<leader>rf', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
-    bind('v', '<leader>rf', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
-end)
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+        vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, opts)
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+        vim.keymap.set('n', '<leader>rr', vim.lsp.buf.rename, opts)
+        vim.keymap.set('n', '<leader>ro', vim.lsp.buf.code_action, opts)
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+        vim.keymap.set({'n', 'v'}, '<leader>rf', vim.lsp.buf.format, opts)
 
-local cmp = require('cmp')
-local cmp_mappings = lsp.defaults.cmp_mappings({
-    ['<Tab>'] = cmp.mapping.confirm(),
-    ['<leader>c'] = cmp.mapping.abort(),
+        -- Enable completion triggered by <c-x><c-o>
+        vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+    end,
 })
 
-cmp_mappings['<S-Tab>'] = nil
-cmp_mappings['<CR>'] = nil
-cmp_mappings['<C-e>'] = nil
-
-lsp.setup_nvim_cmp({
-    mapping = cmp_mappings
-})
+--local cmp = require('cmp')
+--local cmp_mappings = lsp.defaults.cmp_mappings({
+--    ['<Tab>'] = cmp.mapping.confirm(),
+--    ['<leader>c'] = cmp.mapping.abort(),
+--})
+--
+--cmp_mappings['<S-Tab>'] = nil
+--cmp_mappings['<CR>'] = nil
+--cmp_mappings['<C-e>'] = nil
+--
+--lsp.setup_nvim_cmp({
+--    mapping = cmp_mappings
+--})
 
 -- Configure lua language server for neovim
 lsp.nvim_workspace()

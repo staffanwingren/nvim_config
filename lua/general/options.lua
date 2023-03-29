@@ -9,5 +9,7 @@ vim.opt.expandtab = true
 
 vim.opt.signcolumn = 'yes'
 
+vim.opt.path:append('**')
+
 vim.opt.grepprg = 'rg --vimgrep'
 vim.opt.grepformat = '%f:%l:%c:%m'
