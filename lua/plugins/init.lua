@@ -37,9 +37,18 @@ return require('packer').startup(function(use)
         {'rafamadriz/friendly-snippets'},
       }
     }
+
     use 'mfussenegger/nvim-dap'
     use 'jose-elias-alvarez/null-ls.nvim'
 
     use 'tpope/vim-surround'
     use 'tpope/vim-fugitive'
+    use {
+      'folke/which-key.nvim',
+      config = function()
+        vim.o.timeout = true
+        vim.o.timeoutlen = 300
+        require('which-key').setup{}
+      end
+    }
 end)
