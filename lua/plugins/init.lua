@@ -7,6 +7,7 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     use 'morhetz/gruvbox'
     use 'ryanoasis/vim-devicons'
+    use 'nvim-lualine/lualine.nvim'
 
     use('tpope/vim-sleuth')
     use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
