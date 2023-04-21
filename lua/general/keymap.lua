@@ -1,5 +1,12 @@
 vim.g.mapleader = ' '
 
+local wk = require('which-key')
+wk.register{
+    ['<Leader>b'] = { name = 'Buffer...' },
+    ['<Leader>r'] = { name = 'Refactor...' },
+    ['<Leader>t'] = { name = 'Telescope...' },
+}
+
 -- General
 vim.keymap.set('v', '<Leader>p', '"_dP', { desc = 'Overwrite paste' })
 vim.keymap.set('n', '<Leader>bb', ':buffers<CR>:buffer<Space>', { desc = 'Buffer select' })
