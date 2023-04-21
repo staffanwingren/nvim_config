@@ -18,12 +18,13 @@ vim.keymap.set('n', ']a', ':next<CR>', { desc = 'Argumentlist next' })
 vim.keymap.set('n', ']A', ':last<CR>', { desc = 'Argumentlist last' })
 vim.keymap.set('n', '[a', ':previous<CR>', { desc = 'Argumentlist previous' })
 vim.keymap.set('n', '[A', ':first<CR>', { desc = 'Argumentlist first' })
-vim.keymap.set('n', '<leader>h', vim.diagnostic.open_float, { desc = 'Diagnostics open' })
-vim.keymap.set('n', '<leader>H', vim.diagnostic.setloclist, { desc = 'Diagnostics populate locallist' })
-vim.keymap.set('n', '[h', vim.diagnostic.goto_prev, { desc = 'Diagnostics previous' })
-vim.keymap.set('n', ']h', vim.diagnostic.goto_next, { desc = 'Diagnostics next' })
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Diagnostics open' })
+vim.keymap.set('n', '<leader>D', vim.diagnostic.setloclist, { desc = 'Diagnostics populate locallist' })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Diagnostics previous' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Diagnostics next' })
 vim.keymap.set('n', '-', ':Explore<CR>', { desc = 'Explore file directory' })
 vim.keymap.set('n', '<Leader>-', ':Explore.<CR>', { desc = 'Explore current directory' })
+vim.keymap.set('n', '<Leader>h', ':nohlsearch<CR>', { desc = 'No Hightlight'})
 
 -- Telescope
 vim.keymap.set(

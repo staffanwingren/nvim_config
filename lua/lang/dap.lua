@@ -8,38 +8,17 @@ dap.adapters.coreclr = {
   args = {'--interpreter=vscode'}
 }
 
-dap.configurations.cs = {
-  {
-    type = "coreclr",
-    name = "launch - netcoredbg",
-    request = function()
-      local request = vim.fn.input('Launch/Attach: ')
-      local shortcut = string.sub(request, 1, 1)
-      if shortcut == 'l' then
-        return 'launch'
-      elseif shortcut == 'a' then
-        return 'attach'
-      else
-        return request
-      end
-    end,
-    program = function()
-        return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/', 'file')
-    end,
-    processId = function()
-      return vim.fn.input('Process ID: ')
-    end
-  },
+dap.adapters.chrome = {
+    type = "executable",
+    command = "node",
+    args = {install_dir .. '/chrome-debug-adapter/out/src/chromeDebug.js'} -- TODO adjust
 }
 
---dap.configurations.cs = {
---  {
---    type = "coreclr",
---    name = "attach - netcoredbg",
---    request = "attach",
---    processId = 21436,
---  },
---}
+dap.adapters.firefox = {
+  type = 'executable',
+  command = 'node',
+  args = {install_dir .. '/firefox-debug-adapter/dist/adapter.bundle.js'},
+}
 
 vim.keymap.set('n', '<F5>', function() require('dap').continue() end)
 vim.keymap.set('n', '<F10>', function() require('dap').step_over() end)
