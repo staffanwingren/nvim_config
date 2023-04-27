@@ -55,7 +55,7 @@ vim.keymap.set(
 vim.keymap.set(
     'n',
     '<leader>tb',
-    ':Telescope buffers initial_mode=normal path_display={"tail"}<CR>',
+    ':Telescope buffers path_display={"tail"}<CR>',
     { desc = 'Telescope buffer search' }
 )
 vim.keymap.set(
@@ -67,6 +67,6 @@ vim.keymap.set(
 vim.keymap.set(
     'n',
     '<leader>ts',
-    ':Telescope lsp_workspace_symbols initial_mode=normal<CR>',
+    ':Telescope lsp_workspace_symbols<CR>',
     { desc = 'Telescope symbol search' }
 )
