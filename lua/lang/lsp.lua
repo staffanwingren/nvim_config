@@ -1,6 +1,11 @@
-vim.g.OmniSharp_server_use_net6 = 1
-local lsp = require('lsp-zero')
+local ok, lsp = pcall(require, 'lsp-zero')
 
+if not ok then
+    print('Configuration: lsp-zero not available')
+    return
+end
+
+vim.g.OmniSharp_server_use_net6 = 1
 lsp.preset('recommended')
 
 lsp.set_preferences({
@@ -28,17 +33,21 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
-local cmp = require('cmp')
-local cmp_mappings = lsp.defaults.cmp_mappings({
-    ['<Tab>'] = cmp.mapping.confirm(),
-})
+local has_cmp,cmp = pcall(require, 'cmp')
+if has_cmp then
+    local cmp_mappings = lsp.defaults.cmp_mappings({
+        ['<Tab>'] = cmp.mapping.confirm(),
+    })
 
-cmp_mappings['<S-Tab>'] = nil
-cmp_mappings['<CR>'] = nil
+    cmp_mappings['<S-Tab>'] = nil
+    cmp_mappings['<CR>'] = nil
 
-lsp.setup_nvim_cmp({
-    mapping = cmp_mappings
-})
+    lsp.setup_nvim_cmp({
+        mapping = cmp_mappings
+    })
+else
+    print('Configuration: cmp not available')
+end
 
 -- Configure lua language server for neovim
 lsp.nvim_workspace()

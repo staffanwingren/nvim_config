@@ -1,4 +1,10 @@
-local ts_install = require('nvim-treesitter.install')
+local ok, ts_install = pcall(require, 'nvim-treesitter.install')
+
+if not ok then
+  print('Configuration: nvim-treesitter not available')
+  return
+end
+
 ts_install.prefer_git = false
 ts_install.compilers = { "clang" }
 

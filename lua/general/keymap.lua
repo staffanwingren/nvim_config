@@ -1,11 +1,15 @@
 vim.g.mapleader = ' '
 
-local wk = require('which-key')
-wk.register{
-    ['<Leader>b'] = { name = 'Buffer...' },
-    ['<Leader>r'] = { name = 'Refactor...' },
-    ['<Leader>t'] = { name = 'Telescope...' },
-}
+local has_wk, wk = pcall(require, 'which-key')
+
+if has_wk then
+    wk.register{
+        ['<Leader>b'] = { name = 'Buffer...' },
+        ['<Leader>r'] = { name = 'Refactor...' },
+        ['<Leader>t'] = { name = 'Telescope...' },
+        ['<Leader>s'] = { name = 'Debug...' },
+    }
+end
 
 -- General
 vim.keymap.set('v', '<Leader>p', '"_dP', { desc = 'Overwrite paste' })

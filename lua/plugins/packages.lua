@@ -1,9 +1,14 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
---
 -- Only required if you have packer configured as `opt`
 --vim.cmd [[packadd packer.nvim]]
 
-return require('packer').startup(
+local ok, packer =  pcall(require, 'packer')
+
+if not ok then
+    print('Configuration: packer not available')
+    return
+end
+
+return packer.startup(
     function(use)
         use 'wbthomason/packer.nvim'
         use 'morhetz/gruvbox'
