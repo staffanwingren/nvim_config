@@ -48,7 +48,9 @@ return packer.startup(
         use 'jose-elias-alvarez/null-ls.nvim'
 
         use 'mfussenegger/nvim-dap'
+        use 'rcarriga/nvim-dap-ui'
         use 'nvim-telescope/telescope-dap.nvim'
+        use 'theHamsta/nvim-dap-virtual-text'
 
         use 'tpope/vim-surround'
         use 'tpope/vim-fugitive'
