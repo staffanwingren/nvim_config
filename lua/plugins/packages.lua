@@ -50,6 +50,7 @@ return packer.startup(
         use 'mfussenegger/nvim-dap'
         use 'rcarriga/nvim-dap-ui'
         use 'nvim-telescope/telescope-dap.nvim'
+        use 'renerocksai/telekasten.nvim'
         use 'theHamsta/nvim-dap-virtual-text'
 
         use 'tpope/vim-surround'
