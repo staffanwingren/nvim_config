@@ -49,9 +49,19 @@ return packer.startup(
 
         use 'mfussenegger/nvim-dap'
         use 'rcarriga/nvim-dap-ui'
-        use 'nvim-telescope/telescope-dap.nvim'
-        use 'renerocksai/telekasten.nvim'
         use 'theHamsta/nvim-dap-virtual-text'
+        use 'nvim-telescope/telescope-dap.nvim'
+        use {
+            'nvim-neotest/neotest',
+            requires = {
+                'nvim-lua/plenary.nvim',
+                'nvim-treesitter/nvim-treesitter',
+                'antoinemadec/FixCursorHold.nvim'
+            }
+        }
+
+        use 'Issafalcon/neotest-dotnet'
+        use 'renerocksai/telekasten.nvim'
 
         use 'tpope/vim-surround'
         use 'tpope/vim-fugitive'
