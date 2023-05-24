@@ -46,6 +46,7 @@ return packer.startup(
         }
 
         use 'jose-elias-alvarez/null-ls.nvim'
+        use 'folke/neodev.nvim'
 
         use 'mfussenegger/nvim-dap'
         use 'rcarriga/nvim-dap-ui'

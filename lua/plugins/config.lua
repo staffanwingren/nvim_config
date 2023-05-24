@@ -18,3 +18,9 @@ if has_telekasten then
       home = vim.fn.expand("~/Dropbox/slbx"),
     })
 end
+
+local has_neodev, neodev = pcall(require, 'neodev')
+
+if has_neodev then
+    neodev.setup()
+end

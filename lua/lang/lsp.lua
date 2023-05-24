@@ -42,6 +42,8 @@ if has_cmp then
 
     cmp_mappings['<S-Tab>'] = nil
     cmp_mappings['<CR>'] = nil
+    cmp_mappings['<C-b>'] = cmp.mapping.scroll_docs(-4)
+    cmp_mappings['<C-f>'] = cmp.mapping.scroll_docs(4)
 
     lsp.setup_nvim_cmp({
         mapping = cmp_mappings
