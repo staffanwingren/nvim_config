@@ -74,5 +74,7 @@ return packer.startup(
                 require('which-key').setup {}
             end
         }
+
+        use 'github/copilot.vim'
     end
 )

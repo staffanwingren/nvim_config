@@ -93,6 +93,5 @@ vim.keymap.set('n', '<Leader>sB', function() dap.set_breakpoint() end, { desc = 
 --vim.keymap.set('n', '<Leader>lp', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
 
 if has_dapui then
-  vim.keymap.set('n', '<Leader>ss', function() dapui.open() end, { desc = 'Debug UI Open' })
-  vim.keymap.set('n', '<Leader>sS', function() dapui.close() end, { desc = 'Debug UI Close' })
+  vim.keymap.set('n', '<Leader>ss', function() dapui.toggle() end, { desc = 'Debug UI Toggle' })
 end

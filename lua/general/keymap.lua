@@ -37,6 +37,9 @@ vim.keymap.set('n', '-', ':Explore<CR>', { desc = 'Explore file directory' })
 vim.keymap.set('n', '<Leader>-', ':Explore.<CR>', { desc = 'Explore current directory' })
 vim.keymap.set('n', '<Leader>h', ':nohlsearch<CR>', { desc = 'No Hightlight'})
 
+vim.g.copilot_no_tab_map = true
+vim.keymap.set('i', '<M-Enter>', 'copilot#Accept(\'<CR>\')', { silent = true, expr = true, desc = 'Copilot Accept' })
+
 -- Telescope
 vim.keymap.set(
     'n',
