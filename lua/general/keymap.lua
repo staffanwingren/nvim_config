@@ -38,7 +38,17 @@ vim.keymap.set('n', '<Leader>-', ':Explore.<CR>', { desc = 'Explore current dire
 vim.keymap.set('n', '<Leader>h', ':nohlsearch<CR>', { desc = 'No Hightlight'})
 
 vim.g.copilot_no_tab_map = true
-vim.keymap.set('i', '<M-Enter>', 'copilot#Accept(\'<CR>\')', { silent = true, expr = true, desc = 'Copilot Accept' })
+vim.keymap.set(
+    'i',
+    '<M-Enter>',
+    'copilot#Accept(\'<CR>\')',
+    {
+        silent = true,
+        expr = true,
+        replace_keycodes = false,
+        desc = 'Copilot Accept'
+    }
+)
 
 -- Telescope
 vim.keymap.set(
