@@ -63,6 +63,7 @@ return packer.startup(
 
         use 'Issafalcon/neotest-dotnet'
 
+        use 'tpope/vim-vinegar'
         use 'tpope/vim-surround'
         use 'tpope/vim-fugitive'
         use {
