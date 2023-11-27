@@ -19,3 +19,13 @@ vim.opt.grepprg = 'rg --vimgrep'
 vim.opt.grepformat = '%f:%l:%c:%m'
 
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+
+vim.diagnostic.config({
+    underline = true,
+    virtual_text = false,
+    signs = true,
+    update_in_insert = false,
+    float = {
+        source = 'always',
+    },
+})
