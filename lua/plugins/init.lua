@@ -1,5 +1,4 @@
 return {
-    'wbthomason/packer.nvim',
     'morhetz/gruvbox',
     'ryanoasis/vim-devicons',
     'tpope/vim-sleuth',

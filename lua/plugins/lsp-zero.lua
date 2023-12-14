@@ -1,13 +1,15 @@
 return {
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
+    'neovim/nvim-lspconfig',
+    'Hoffs/omnisharp-extended-lsp.nvim',
     {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v3.x',
         dependencies = {
-            'neovim/nvim-lspconfig',
             'williamboman/mason.nvim',
             'williamboman/mason-lspconfig.nvim',
+            'neovim/nvim-lspconfig',
         },
         config = function()
             local lsp_zero = require('lsp-zero')
@@ -43,11 +45,39 @@ return {
               },
               handlers = {
                 lsp_zero.default_setup,
+                omnisharp = function()
+                    local install_dir = vim.fn.stdpath("data") .. "/mason/packages"
+                    local omnisharp_cmd = install_dir .. '/omnisharp/omnisharp.cmd'
+                    local config = {
+                        cmd = {
+                            omnisharp_cmd,
+                            '--languageserver' ,
+                            '--hostPID', tostring(vim.fn.getpid())
+                        },
+                        filetypes = { 'cs' },
+                        root_dir = require('lspconfig').util.root_pattern(
+                            '*.sln',
+                            '*.csproj',
+                            '*.props',
+                            '*.targets',
+                            'packages.config'
+                        ),
+                        enable_editorconfig_support = true,
+                        enable_roslyn_analysers = true,
+                        enable_import_completion = true,
+                        sdk_include_prereleases = true,
+                        analyze_open_documents_only = false,
+                        enable_ms_build_load_projects_on_demand = false,
+                        handlers = {
+                            ['textDocument/definition'] = require('omnisharp_extended').handler,
+                        }
+                    }
+                    require('lspconfig').omnisharp.setup(config)
+                end
               }
           }
         end,
     },
-
     {
         'hrsh7th/nvim-cmp',
         dependencies = {
