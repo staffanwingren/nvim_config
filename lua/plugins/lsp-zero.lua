@@ -36,7 +36,7 @@ return {
             require('mason-lspconfig').setup{
               ensure_installed = {
                 'gopls',
-                'html',
+
                 'lua_ls',
                 'tsserver',
                 'omnisharp',
@@ -77,74 +77,5 @@ return {
               }
           }
         end,
-    },
-    {
-        'hrsh7th/nvim-cmp',
-        dependencies = {
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-path',
-            'L3MON4D3/LuaSnip',
-        },
-        config = function()
-            local has_cmp, cmp = pcall(require, 'cmp')
-            local has_luasnip, luasnip = pcall(require, 'luasnip')
-            local has_vscode_loaders, vscode_loaders = pcall(require, 'luasnip.loaders.from_vscode')
-                vscode_loaders.load()
-
-                -- Setup nvim-cmp
-                cmp.setup {
-                    snippet = {
-                        expand = function(args)
-                            luasnip.expand(args.body)
-                        end
-                    },
-                    sources = {
-                        { name = 'path' },
-                        { name = 'nvim_lsp' },
-                        { name = 'luasnip', keyword_length = 2 },
-                        { name = 'buffer', keyword_length = 3 },
-                    },
-                    mapping = {
-                        ['<Tab>'] = cmp.mapping.confirm(),
-                        ['<C-Space>'] = cmp.mapping.complete(),
-                        ['<C-n>'] = cmp.mapping(function(fallback)
-                            if cmp.visible() then
-                                cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-                            else
-                                fallback()
-                            end
-                        end, { 'i', 's' }),
-                        ['<C-p>'] = cmp.mapping(function(fallback)
-                            if cmp.visible() then
-                                cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-                            else
-                                fallback()
-                            end
-                        end, { 'i', 's' }),
-                    },
-                    preselect = 'item',
-                    completion = {
-                        completeopt = 'menu,menuone,noinsert',
-                    },
-                }
-
-                -- Setup LuaSnip key bindings
-                vim.keymap.set({'i', 's'}, '<C-k>', function()
-                    if luasnip.jumpable(1) then
-                        luasnip.jump(1)
-                    end
-                end, { silent = true })
-                vim.keymap.set({'i', 's'}, '<C-j>', function()
-                    if luasnip.jumpable(-1) then
-                        luasnip.jump(-1)
-                    end
-                end, { silent = true })
-                vim.keymap.set({'i', 's'}, '<C-l>', function()
-                    if luasnip.choice_active() then
-                        luasnip.change_choice(1)
-                    end
-                end, { silent = true })
-        end,
-
     },
 }

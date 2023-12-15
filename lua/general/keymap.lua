@@ -33,22 +33,8 @@ vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Diagnostic
 vim.keymap.set('n', '<leader>D', vim.diagnostic.setloclist, { desc = 'Diagnostics populate locallist' })
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Diagnostics previous' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Diagnostics next' })
-vim.keymap.set('n', '-', ':Explore<CR>', { desc = 'Explore file directory' })
---vim.keymap.set('n', '<Leader>-', ':Explore.<CR>', { desc = 'Explore current directory' })
+--vim.keymap.set('n', '-', ':Explore<CR>', { desc = 'Explore file directory' })
 vim.keymap.set('n', '<Leader>h', ':nohlsearch<CR>', { desc = 'No Hightlight'})
-
-vim.g.copilot_no_tab_map = true
-vim.keymap.set(
-    'i',
-    '<M-Enter>',
-    'copilot#Accept(\'<CR>\')',
-    {
-        silent = true,
-        expr = true,
-        replace_keycodes = false,
-        desc = 'Copilot Accept'
-    }
-)
 
 -- Telescope
 vim.keymap.set(

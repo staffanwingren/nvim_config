@@ -17,7 +17,7 @@ if has_lualine then
             lualine_c = {'filename'},
             lualine_x = {'diff'},
             lualine_y = {'encoding'},
-            lualine_z = {'location'},
+            lualine_z = {'location', 'progress'},
         },
     --    inactive_sections = {},
         tabline = {
