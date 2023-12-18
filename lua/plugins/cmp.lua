@@ -1,51 +1,64 @@
 return {
-    'hrsh7th/nvim-cmp',
-    enabled = true,
-    dependencies = {
-        'hrsh7th/cmp-nvim-lsp',
-        'hrsh7th/cmp-path',
-        'L3MON4D3/LuaSnip',
+  "hrsh7th/nvim-cmp",
+  version = false, -- last release is way too old
+  event = "InsertEnter",
+  dependencies = {
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
+    {
+      "L3MON4D3/LuaSnip",
+      keys = {
+        {
+          "<tab>",
+          function()
+            return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
+          end,
+          expr = true, silent = true, mode = "i",
+        },
+        { "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
+        { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+      },
     },
-    config = function()
-        local cmp = require'cmp'
-        local luasnip = require'luasnip'
-        local vscode_loaders = require'luasnip.loaders.from_vscode'
-
-        vscode_loaders.load()
-
-        -- Setup nvim-cmp
-        cmp.setup {
-            snippet = {
-                expand = function(args)
-                    luasnip.expand(args.body)
-                end
-            },
-            sources = cmp.config.sources{
-                { name = 'path' },
-                { name = 'nvim_lsp' },
-                { name = 'luasnip', keyword_length = 2 },
-                { name = 'buffer', keyword_length = 3 },
-            },
-            window = {},
-            mapping = cmp.mapping.preset,
-        }
-
-        -- Setup LuaSnip key bindings
---        vim.keymap.set({'i', 's'}, '<C-n>', function()
---            if luasnip.jumpable(1) then
---                luasnip.jump(1)
---            end
---        end, { silent = true })
---        vim.keymap.set({'i', 's'}, '<C-p>', function()
---            if luasnip.jumpable(-1) then
---                luasnip.jump(-1)
---            end
---        end, { silent = true })
-        --vim.keymap.set({'i', 's'}, '<C-l>', function()
-        --    if luasnip.choice_active() then
-        --        luasnip.change_choice(1)
-        --    end
-        --end, { silent = true })
-    end,
-
+    "rafamadriz/friendly-snippets",
+    "saadparwaiz1/cmp_luasnip",
+  },
+  opts = function()
+    local cmp = require("cmp")
+    local defaults = require("cmp.config.default")()
+    return {
+      completion = {
+        completeopt = "menu,menuone,noinsert",
+      },
+      snippet = {
+        expand = function(args)
+          require("luasnip").lsp_expand(args.body)
+        end,
+      },
+      mapping = cmp.mapping.preset.insert({
+        ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-e>"] = cmp.mapping.abort(),
+        --["<C-y>"] = cmp.mapping.complete(),
+      }),
+      preselect = cmp.PreselectMode.None,
+      sources = cmp.config.sources({
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+        { name = "path" },
+      }, {
+        { name = "buffer" },
+      }),
+      sorting = defaults.sorting,
+    }
+  end,
+  config = function(_, opts)
+    for _, source in ipairs(opts.sources) do
+      source.group_index = source.group_index or 1
+    end
+    require("luasnip.loaders.from_vscode").lazy_load()
+    require("cmp").setup(opts)
+  end,
 }
