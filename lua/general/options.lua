@@ -15,7 +15,7 @@ vim.opt.colorcolumn = '81'
 
 vim.opt.path:append('**')
 
-vim.opt.grepprg = 'rg --vimgrep'
+vim.opt.grepprg = 'rg -S --vimgrep'
 vim.opt.grepformat = '%f:%l:%c:%m'
 
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
