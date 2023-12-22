@@ -6,7 +6,7 @@ return {
 
 --    'folke/neodev.nvim',
 
-    'tpope/vim-vinegar',
+--    'tpope/vim-vinegar',
     'tpope/vim-surround',
     'tpope/vim-fugitive',
 

@@ -5,9 +5,10 @@ local has_wk, wk = pcall(require, 'which-key')
 if has_wk then
     wk.register{
         ['<Leader>b'] = { name = 'Buffer...' },
+        ['<Leader>k'] = { name = 'Quickmaps...' },
         ['<Leader>r'] = { name = 'Refactor...' },
-        ['<Leader>t'] = { name = 'Telescope...' },
         ['<Leader>s'] = { name = 'Debug...' },
+        ['<Leader>t'] = { name = 'Telescope...' },
     }
 end
 
@@ -33,43 +34,7 @@ vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Diagnostic
 vim.keymap.set('n', '<leader>D', vim.diagnostic.setloclist, { desc = 'Diagnostics populate locallist' })
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Diagnostics previous' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Diagnostics next' })
---vim.keymap.set('n', '-', ':Explore<CR>', { desc = 'Explore file directory' })
-vim.keymap.set('n', '<Leader>h', ':nohlsearch<CR>', { desc = 'No Hightlight'})
 
--- Telescope
-vim.keymap.set(
-    'n',
-    '<leader>tf',
-    ':Telescope find_files path_display={"tail"}<CR>',
-    { desc = 'Telescope file search' }
-)
-vim.keymap.set(
-    'n',
-    '<leader>tF',
-    ':Telescope git_files path_display={"tail"}<CR>',
-    { desc = 'Telescope git search' }
-)
-vim.keymap.set(
-    'n',
-    '<leader>tg',
-    ':Telescope live_grep<CR>',
-    { desc = 'Telescope live grep' }
-)
-vim.keymap.set(
-    'n',
-    '<leader>tb',
-    ':Telescope buffers path_display={"tail"}<CR>',
-    { desc = 'Telescope buffer search' }
-)
-vim.keymap.set(
-    'n',
-    '<leader>th',
-    ':Telescope help_tags<CR>',
-    { desc = 'Telescope help search' }
-)
-vim.keymap.set(
-    'n',
-    '<leader>ts',
-    ':Telescope lsp_workspace_symbols<CR>',
-    { desc = 'Telescope symbol search' }
-)
+vim.keymap.set('n', '<Leader>ko', 'm\'o<Esc><C-o>', { desc = 'Open line below' })
+vim.keymap.set('n', '<Leader>kO', 'm\'O<Esc><C-o>', { desc = 'Open line above' })
+vim.keymap.set('n', '<Leader>kh', ':nohlsearch<CR>', { desc = 'No Hightlight'})
