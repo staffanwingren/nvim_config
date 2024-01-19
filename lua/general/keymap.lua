@@ -38,3 +38,4 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Diagnostics next' 
 vim.keymap.set('n', '<Leader>ko', 'm\'o<Esc><C-o>', { desc = 'Open line below' })
 vim.keymap.set('n', '<Leader>kO', 'm\'O<Esc><C-o>', { desc = 'Open line above' })
 vim.keymap.set('n', '<Leader>kh', ':nohlsearch<CR>', { desc = 'No Hightlight'})
+vim.keymap.set('n', '<Leader>kb', ':buffers<CR>:b', { desc = 'List buffers' })
