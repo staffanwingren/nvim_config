@@ -39,3 +39,5 @@ vim.keymap.set('n', '<Leader>ko', 'm\'o<Esc><C-o>', { desc = 'Open line below' }
 vim.keymap.set('n', '<Leader>kO', 'm\'O<Esc><C-o>', { desc = 'Open line above' })
 vim.keymap.set('n', '<Leader>kh', ':nohlsearch<CR>', { desc = 'No Hightlight'})
 vim.keymap.set('n', '<Leader>kb', ':buffers<CR>:b', { desc = 'List buffers' })
+vim.keymap.set({'n','v'}, '<Leader>y', '"+y', { desc = 'Yank to clipboard' })
+vim.keymap.set({'n','v'}, '<Leader>p', '"+p', { desc = 'Past from clipboard' })
