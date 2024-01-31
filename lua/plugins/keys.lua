@@ -3,7 +3,7 @@ return {
     'staffanwingren/keys',
     dev = true,
     lazy = false,
-    priority = 950,
+    priority = 940,
     config = function()
       -- General
       vim.keymap.set('v', '<Leader>p', '"_dP', { desc = 'Overwrite paste' })
