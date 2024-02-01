@@ -88,9 +88,16 @@ return {
             lsp_setup("gopls")
             lsp_setup("tsserver", {
                 cmd = {
-                    mason_bin .. '/typescript-language-server.cmd',
+                    mason_bin .. 'typescript-language-server.cmd',
                     '--stdio',
                 },
+            })
+
+            lsp_setup("svelte", {
+                cmd = {
+                    mason_bin .. 'svelteserver.cmd',
+                    '--stdio',
+                }
             })
 
             lsp_setup("bicep", {
