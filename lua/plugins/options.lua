@@ -1,16 +1,32 @@
+local cs = 'gruvbox'
+
 return {
+  {
+    'ellisonleao/gruvbox.nvim',
+    lazy = false,
+    priority = 950,
+    config = function()
+      if cs == 'gruvbox' then
+        vim.opt.background = 'dark'
+        vim.cmd('colorscheme gruvbox')
+      end
+    end,
+  },
   {
     'folke/tokyonight.nvim',
     lazy = false,
     priority = 950,
     config = function()
-      vim.cmd('colorscheme tokyonight')
+      if cs == 'tokyonight' then
+        vim.opt.background = 'dark'
+        vim.cmd('colorscheme tokyonight')
+      end
     end,
   },
   {
     'nvim-lualine/lualine.nvim',
     opts = {
-      options = { theme = 'tokyonight' },
+      options = { theme = cs },
       sections = {
         lualine_a = { 'mode' },
         lualine_b = { 'branch' },
@@ -44,7 +60,6 @@ return {
     lazy = false,
     priority = 951,
     config = function()
-      vim.opt.background = 'dark'
       vim.opt.number = true
       vim.opt.relativenumber = true
       vim.opt.numberwidth = 6
