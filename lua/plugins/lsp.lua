@@ -1,8 +1,5 @@
 return {
-    {
-        'williamboman/mason.nvim',
-        opts = {},
-    },
+    'williamboman/mason.nvim',
     {
         'neovim/nvim-lspconfig',
         dependencies = {
@@ -31,8 +28,30 @@ return {
                 vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
                 vim.api.nvim_buf_set_option(bufnr, 'tagfunc', 'v:lua.vim.lsp.tagfunc')
 
+                vim.keymap.set(
+                    'i',
+                    '<M-k>',
+                    '<Esc>:LspOverloadsSignature<CR>a',
+                    opts
+                )
+                vim.keymap.set(
+                    'n',
+                    '<M-k>',
+                    ':LspOverloadsSignature<CR>',
+                    opts
+                )
+
                 if client.server_capabilities.signatureHelpProvider then
-                    require('lsp-overloads').setup(client, {})
+                    require('lsp-overloads').setup(client, {
+                        keymaps = {
+                            next_signature = "<C-j>",
+                            previous_signature = "<C-k>",
+                            next_parameter = "<C-l>",
+                            previous_parameter = "<C-h>",
+                            close_signature = "<A-k>"
+                        },
+                        display_automatically = false,
+                    })
                 end
             end
 
