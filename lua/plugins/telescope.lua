@@ -44,7 +44,7 @@ return {
 
       -- All the patterns used to detect root dir, when **"pattern"** is in
       -- detection_methods
-      patterns = { ".git", ".sln", "Makefile", "package.json", "_darcs", ".hg", ".bzr", ".svn", },
+      patterns = { ".git", "*.sln", "Makefile", "package.json", "_darcs", ".hg", ".bzr", ".svn", },
 
       -- Table of lsp clients to ignore by name
       -- eg: { "efm", ... }
