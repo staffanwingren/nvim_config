@@ -60,11 +60,54 @@ return {
     event = 'VimEnter',
     config = function()
       require('dashboard').setup {
-        theme = 'hyper',           --  theme is doom and hyper default is hyper
+        theme = 'doom',            --  theme is doom and hyper default is hyper
         disable_move = false,      --  default is false disable move keymap for hyper
         shortcut_type = 'letter',  --  shorcut type 'letter' or 'number'
         change_to_vcs_root = true, -- default is false,for open file in hyper mru. it will change to the root of vcs
-        config = {},               --  config used for theme
+        config = { --  config used for theme
+          center = {
+            {
+              icon = '󰎔  ',
+              icon_hl = 'group',
+              desc = 'New File',
+              desc_hl = 'group',
+              key = 'n',
+              key_hl = 'group',
+              key_format = ' [%s]',
+              action = 'enew',
+            },
+            {
+              icon = '  ',
+              icon_hl = 'group',
+              desc = 'Recent projects...',
+              desc_hl = 'group',
+              key = 'p',
+              key_hl = 'group',
+              key_format = ' [%s]',
+              action = 'Telescope projects',
+            },
+            {
+              icon = '  ',
+              icon_hl = 'group',
+              desc = 'Recent files...',
+              desc_hl = 'group',
+              key = 'f',
+              key_hl = 'group',
+              key_format = ' [%s]',
+              action = 'Telescope oldfiles',
+            },
+            {
+              icon = '  ',
+              icon_hl = 'group',
+              desc = 'Quit',
+              desc_hl = 'group',
+              key = 'q',
+              key_hl = 'group',
+              key_format = ' [%s]',
+              action = 'qa',
+            },
+          },
+        },
         --hide = {
         --  statusline = true, -- hide statusline default is true
         --  tabline = true,  -- hide the tabline
