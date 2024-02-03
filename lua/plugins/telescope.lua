@@ -59,7 +59,7 @@ return {
 
       -- When set to false, you will get a message when project.nvim changes your
       -- directory.
-      silent_chdir = false,
+      silent_chdir = true,
 
       -- What scope to change the directory, valid options are
       -- * global (default)

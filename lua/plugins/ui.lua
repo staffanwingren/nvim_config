@@ -117,4 +117,20 @@ return {
     end,
     dependencies = { 'vim-tree/nvim-web-devicons' }
   },
+  {
+    'folke/which-key.nvim',
+    config = function(_, _)
+      vim.g.mapleader = ' '
+
+      local wk = require 'which-key'
+
+      wk.register {
+        ['<Leader>b'] = { name = 'Buffer...' },
+        ['<Leader>k'] = { name = 'Quickmaps...' },
+        ['<Leader>r'] = { name = 'Refactor...' },
+        ['<Leader>s'] = { name = 'Debug...' },
+        ['<Leader>t'] = { name = 'Telescope...' },
+      }
+    end,
+  },
 }

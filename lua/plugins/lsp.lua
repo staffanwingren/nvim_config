@@ -10,6 +10,7 @@ return {
             local lspconfig = require 'lspconfig'
             local mason_pac = vim.fn.stdpath("data") .. "/mason/packages/"
             local mason_bin = vim.fn.stdpath("data") .. "/mason/bin/"
+
             local on_attach = function(client, bufnr)
                 local opts = { buffer = bufnr, remap = false, silent = true }
 
