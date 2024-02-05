@@ -2,7 +2,7 @@ return {
   'mfussenegger/nvim-lint',
   config = function()
     local lint = require 'lint'
-    lint.liters_by_ft = {
+    lint.linters_by_ft = {
       typescript = { 'eslint' },
     }
     vim.api.nvim_create_autocmd(

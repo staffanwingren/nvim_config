@@ -1,5 +1,8 @@
 return {
-    'williamboman/mason.nvim',
+    {
+        'williamboman/mason.nvim',
+        opts = {},
+    },
     {
         'neovim/nvim-lspconfig',
         dependencies = {
@@ -110,6 +113,12 @@ return {
             lsp_setup("powershell_es", {
                 cmd = {},
                 bundle_path = mason_pac .. 'powershell-editor-services/PowerShellEditorServices',
+            })
+
+            lsp_setup("vale_ls", {
+                cmd = { mason_bin .. 'vale-ls.cmd' },
+                root_dir = require 'lspconfig.util'.root_pattern { 'vale.ini', '.obsidian', '.attachments' },
+                single_file_support = true,
             })
 
             lsp_setup("lua_ls", {
