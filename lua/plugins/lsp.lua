@@ -108,6 +108,7 @@ return {
             })
 
             lsp_setup("powershell_es", {
+                cmd = {},
                 bundle_path = mason_pac .. 'powershell-editor-services/PowerShellEditorServices',
             })
 
