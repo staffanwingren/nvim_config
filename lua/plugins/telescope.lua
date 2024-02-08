@@ -21,13 +21,23 @@ return {
       local ts = require 'telescope'
       ts.setup {
         extensions = {
-          project = {
+          project = {},
+          fzf = {
+            fuzzy = true,
+            override_generic_sorter = true,
+            override_file_sorter = true,
+            case_mode = 'smart_case',
           },
         },
       }
 
-      ts.load_extension('projects')
+      ts.load_extension 'fzf'
+      ts.load_extension 'projects'
     end
+  },
+  {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
   },
   {
     'ahmedkhalf/project.nvim',

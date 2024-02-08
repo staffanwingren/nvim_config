@@ -14,9 +14,11 @@ return {
           function()
             return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
           end,
-          expr = true, silent = true, mode = "i",
+          expr = true,
+          silent = true,
+          mode = "i",
         },
-        { "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
+        { "<tab>",   function() require("luasnip").jump(1) end,  mode = "s" },
         { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
       },
     },
@@ -36,18 +38,19 @@ return {
         end,
       },
       mapping = cmp.mapping.preset.insert({
-        ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-        ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
+        ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-e>"] = cmp.mapping.abort(),
-        --["<C-y>"] = cmp.mapping.complete(),
+        ["<M-CR>"] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Insert },
       }),
       preselect = cmp.PreselectMode.None,
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "path" },
+        { name = "copilot" },
       }, {
         { name = "buffer" },
       }),
