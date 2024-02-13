@@ -15,3 +15,5 @@ My Neovim config
 - Wget: Not sure it is needed but marked as _Error_ by `:checkhealth` if missing.
 - CMake: Required to build fzf-native.
   Installation: `winget install Kitware.CMake`
+- For NeoAI (OpenAI) the `OPENAI_API_KEY` environment variable must be set to a
+  valid key.
