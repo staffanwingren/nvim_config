@@ -11,7 +11,7 @@ return {
                 dapui.setup()
                 vim.keymap.set(
                     'n',
-                    '<Leader>ss',
+                    '<F7>',
                     function() dapui.toggle() end,
                     { desc = 'Debug UI Toggle' }
                 )
@@ -58,53 +58,45 @@ return {
 
         vim.keymap.set(
             'n',
-            '<Leader>sa',
+            '<F6>',
             function() dap.run_last() end,
             { desc = 'Debug Run Last' }
         )
         vim.keymap.set(
             'n',
-            '<Leader>sp',
+            '<F5>',
             function() dap.continue() end,
             { desc = 'Debug Continue' }
         )
         vim.keymap.set(
             'n',
-            '<Leader>so',
+            '<F10>',
             function() dap.step_over() end,
             { desc = 'Debug Step Over' }
         )
         vim.keymap.set(
             'n',
-            '<Leader>si',
+            '<F11>',
             function() dap.step_into() end,
             { desc = 'Debug Step Into' }
         )
         vim.keymap.set(
             'n',
-            '<Leader>su',
+            '<S-F9>',
             function() dap.step_out() end,
             { desc = 'Debug Step Out' }
         )
         vim.keymap.set(
             'n',
-            '<Leader>sr',
+            '<F8>',
             function() dap.repl.open() end,
             { desc = 'Repl Open' }
         )
         vim.keymap.set(
             'n',
-            '<Leader>sb',
+            '<F9>',
             function() dap.toggle_breakpoint() end,
             { desc = 'Toggle Breakpoint' }
         )
-        vim.keymap.set(
-            'n',
-            '<Leader>sB',
-            function() dap.set_breakpoint() end,
-            { desc = 'Set Breakpoint' }
-        )
-if has_dapui then
-end
     end,
 }
