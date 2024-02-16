@@ -33,6 +33,7 @@ return {
 
       ts.load_extension 'fzf'
       ts.load_extension 'projects'
+      ts.load_extension 'dap'
     end
   },
   {

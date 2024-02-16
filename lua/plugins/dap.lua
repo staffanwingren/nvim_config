@@ -28,9 +28,9 @@ return {
         require('dapui').setup()
 
         dap.adapters.coreclr = {
-          type = 'executable',
-          command = install_dir .. '/netcoredbg/netcoredbg/netcoredbg.exe',
-          args = {'--interpreter=vscode'}
+            type = 'executable',
+            command = install_dir .. '/netcoredbg/netcoredbg/netcoredbg.exe',
+            args = { '--interpreter=vscode' }
         }
 
         dap.configurations.cs = {
@@ -53,7 +53,7 @@ return {
         dap.adapters.chrome = {
             type = "executable",
             command = "node",
-            args = {install_dir .. '/chrome-debug-adapter/out/src/chromeDebug.js'}
+            args = { install_dir .. '/chrome-debug-adapter/out/src/chromeDebug.js' }
         }
 
         vim.keymap.set(
