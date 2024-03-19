@@ -115,11 +115,11 @@ return {
                 bundle_path = mason_pac .. 'powershell-editor-services/PowerShellEditorServices',
             })
 
-            lsp_setup("vale_ls", {
-                cmd = { mason_bin .. 'vale-ls.cmd' },
-                root_dir = require 'lspconfig.util'.root_pattern { 'vale.ini', '.obsidian', '.attachments' },
-                single_file_support = true,
-            })
+--            lsp_setup("vale_ls", {
+--                cmd = { mason_bin .. 'vale-ls.cmd' },
+--                root_dir = require 'lspconfig.util'.root_pattern { 'vale.ini', '.obsidian', '.attachments' },
+--                single_file_support = true,
+--            })
 
             lsp_setup("lua_ls", {
                 cmd = {
