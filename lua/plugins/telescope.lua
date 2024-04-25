@@ -4,18 +4,46 @@ return {
     branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-fzf-native.nvim',
+      {
+        'nvim-telescope/telescope-live-grep-args.nvim',
+        version = "^1.0.0",
+      },
     },
     keys = {
-      { '<leader>tb', ':Telescope buffers path_display={"tail"}<CR>',    mode = 'n', desc = 'Telescope buffer search' },
-      { '<leader>tf', ':Telescope find_files path_display={"tail"}<CR>', mode = 'n', desc = 'Telescope file search' },
-      { '<leader>tF', ':Telescope git_files path_display={"tail"}<CR>',  mode = 'n', desc = 'Telescope git search' },
-      { '<leader>tg', ':Telescope live_grep<CR>',                        mode = 'n', desc = 'Telescope live grep' },
-      { '<leader>th', ':Telescope help_tags<CR>',                        mode = 'n', desc = 'Telescope help search' },
-      { '<leader>tj', ':Telescope jumplist<CR>',                         mode = 'n', desc = 'Telescope jumplist' },
-      { '<leader>tr', ':Telescope registers<CR>',                        mode = 'n', desc = 'Telescope registers' },
-      { '<leader>ts', ':Telescope lsp_workspace_symbols<CR>',            mode = 'n', desc = 'Telescope symbol search' },
-      { '<leader>tt', ':Telescope resume<CR>',                           mode = 'n', desc = 'Telescope previous search' },
-      { '<leader>tp', ':Telescope projects<CR>',                         mode = 'n', desc = 'Telescope projects' },
+      {
+        '<leader>tb', ':Telescope buffers path_display={"tail"}<CR>', mode = 'n', desc = 'Telescope buffer search'
+      },
+      {
+        '<leader>tf', ':Telescope find_files path_display={"tail"}<CR>', mode = 'n', desc = 'Telescope file search'
+      },
+      {
+        '<leader>tF', ':Telescope git_files path_display={"tail"}<CR>', mode = 'n', desc = 'Telescope git search'
+      },
+      {
+        '<leader>tg', ':Telescope live_grep<CR>', mode = 'n', desc = 'Telescope live grep'
+      },
+      {
+        '<leader>th', ':Telescope help_tags<CR>', mode = 'n', desc = 'Telescope help search'
+      },
+      {
+        '<leader>tj', ':Telescope jumplist<CR>', mode = 'n', desc = 'Telescope jumplist'
+      },
+      {
+        '<leader>tr', ':Telescope registers<CR>', mode = 'n', desc = 'Telescope registers'
+      },
+      {
+        '<leader>ts', ':Telescope lsp_workspace_symbols<CR>', mode = 'n', desc = 'Telescope symbol search'
+      },
+      {
+        '<leader>tt', ':Telescope resume<CR>', mode = 'n', desc = 'Telescope previous search'
+      },
+      {
+        '<leader>tp', ':Telescope projects<CR>', mode = 'n', desc = 'Telescope projects'
+      },
+      {
+        '<leader>tG', ":lua require'telescope'.extensions.live_grep_args.live_grep_args()<CR>", mode = 'n', desc = 'Telescope grep w. args'
+      },
     },
     config = function(_, _)
       local ts = require 'telescope'
@@ -28,12 +56,16 @@ return {
             override_file_sorter = true,
             case_mode = 'smart_case',
           },
+          live_grep_args = {
+            auto_quoting = false,
+          },
         },
       }
 
       ts.load_extension 'fzf'
       ts.load_extension 'projects'
       ts.load_extension 'dap'
+      ts.load_extension 'live_grep_args'
     end
   },
   {

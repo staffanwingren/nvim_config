@@ -79,6 +79,12 @@ return {
                     handlers = {
                         ["textDocument/definition"] = require('omnisharp_extended').handler,
                     },
+                    filetypes = {
+                        "cs",
+                        "vb",
+                        "cshtml",
+                        "razor",
+                    },
                     enable_editorconfig_support = true,
                     enable_roslyn_analysers = true,
                     organize_imports_on_format = true,
