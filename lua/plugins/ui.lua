@@ -127,6 +127,16 @@ return {
             {
               icon = '  ',
               icon_hl = 'group',
+              desc = 'Last session...',
+              desc_hl = 'group',
+              key = 's',
+              key_hl = 'group',
+              key_format = ' [%s]',
+              action = "lua require 'persistence'.load{ last = true }",
+            },
+            {
+              icon = '  ',
+              icon_hl = 'group',
               desc = 'Recent files...',
               desc_hl = 'group',
               key = 'r',
@@ -153,7 +163,10 @@ return {
         --},
       }
     end,
-    dependencies = { 'nvim-tree/nvim-web-devicons' }
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+      'folke/persistence.nvim',
+    },
   },
   {
     'folke/which-key.nvim',
@@ -170,5 +183,12 @@ return {
         ['<Leader>t'] = { name = 'Telescope...' },
       }
     end,
+  },
+  {
+    'folke/persistence.nvim',
+    event = "BufReadPre", -- this will only start session saving when an actual file was opened
+    opts = {
+      -- add any custom options here
+    }
   },
 }
