@@ -170,8 +170,8 @@ return {
       },
       config = function()
         require 'neo-tree'.setup()
-        vim.keymap.set('n', '<Leader>e', ':Neotree position=current<CR>', { desc = 'Open file-tree' })
-        vim.keymap.set('n', '<Leader>E', ':Neotree float<CR>', { desc = 'Open file-tree float' })
+        vim.keymap.set('n', '<Leader>e', ':Neotree position=float relveal<CR>', { desc = 'Open file-tree float' })
+        vim.keymap.set('n', '<Leader>E', ':Neotree position=current<CR>', { desc = 'Open file-tree' })
       end,
   },
 }
