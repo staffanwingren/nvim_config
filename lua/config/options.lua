@@ -9,26 +9,26 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.textwidth = 80
+vim.opt.termguicolors = true
 
-vim.opt.signcolumn = 'yes'
-vim.opt.colorcolumn = '81'
+vim.opt.signcolumn = "yes"
+vim.opt.colorcolumn = "81"
 
-vim.opt.path:append('**')
+--vim.opt.path:append('**')
+vim.opt.grepprg = "rg -S --vimgrep"
+vim.opt.grepformat = "%f:%l:%c:%m"
 
-vim.opt.grepprg = 'rg -S --vimgrep'
-vim.opt.grepformat = '%f:%l:%c:%m'
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-
-vim.diagnostic.config({
+vim.diagnostic.config {
     underline = true,
     virtual_text = false,
     signs = true,
     update_in_insert = false,
     float = {
-        source = 'always',
+        source = "always",
     },
-})
+}
 
 vim.g.netrw_menu = 0
 vim.g.netrw_banner = 0
@@ -36,4 +36,4 @@ vim.g.netrw_preview = 1
 vim.g.netrw_liststyle = 0
 --vim.g.netrw_keepdir=1
 vim.g.netrw_winsize = 25
-vim.g.netrw_bufsettings = 'noma nomod nu nowrap ro nobl'
+vim.g.netrw_bufsettings = "noma nomod nu nowrap ro nobl"

@@ -1,37 +1,32 @@
 return {
     {
-        'github/copilot.vim',
+        "github/copilot.vim",
         enabled = false,
         config = function()
             vim.g.copilot_no_tab_map = true
-            vim.keymap.set(
-                'i',
-                '<M-Enter>',
-                'copilot#Accept(\'<CR>\')',
-                {
-                    silent = true,
-                    expr = true,
-                    replace_keycodes = false,
-                    desc = 'Copilot Accept'
-                }
-            )
+            vim.keymap.set("i", "<M-Enter>", "copilot#Accept('<CR>')", {
+                silent = true,
+                expr = true,
+                replace_keycodes = false,
+                desc = "Copilot Accept",
+            })
         end,
     },
     {
-        'zbirenbaum/copilot.lua',
+        "zbirenbaum/copilot.lua",
         enabled = false,
-        event = 'InsertEnter',
+        event = "InsertEnter",
         opts = {
             suggestion = { enabled = false },
             panel = { enabled = false },
         },
     },
     {
-        'zbirenbaum/copilot-cmp',
+        "zbirenbaum/copilot-cmp",
         enabled = false,
         config = function()
-            require 'copilot_cmp'.setup()
-        end
+            require("copilot_cmp").setup()
+        end,
     },
     {
         "Bryley/neoai.nvim",
@@ -56,8 +51,8 @@ return {
             { "<leader>ag", desc = "generate git message" },
         },
         config = function()
-            require("neoai").setup({
-                require("neoai").setup({
+            require("neoai").setup {
+                require("neoai").setup {
                     -- Below are the default options, feel free to override what you would like changed
                     ui = {
                         output_popup_text = "NeoAI",
@@ -134,14 +129,14 @@ return {
                     Using the following git diff generate a consise and
                     clear git commit message, with a short title summary
                     that is 75 characters or less:
-                ]] .. vim.fn.system("git diff --cached")
+                ]] .. vim.fn.system "git diff --cached"
                             end,
                             modes = { "n" },
                             strip_function = nil,
                         },
                     },
-                })
-            })
+                },
+            }
         end,
     },
 }

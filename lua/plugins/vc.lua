@@ -1,12 +1,8 @@
 return {
-    'nvim-tree/nvim-web-devicons',
-    'nvim-neotest/nvim-nio',
-    'nvim-lua/plenary.nvim',
-    'tpope/vim-sleuth',
-    'tpope/vim-surround',
     'tpope/vim-fugitive',
     {
       "NeogitOrg/neogit",
+      enabled = false,
       dependencies = {
         "nvim-lua/plenary.nvim",         -- required
         "sindrets/diffview.nvim",        -- optional - Diff integration
@@ -14,4 +10,4 @@ return {
       },
       config = true
     },
-  }
+}

@@ -1,7 +1,7 @@
 return {
     {
-        'nvim-treesitter/nvim-treesitter',
-        build = ':TSUpdate',
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
         opts = {
             -- A list of parser names, or "all"
             ensure_installed = { "c", "lua", "rust", "c_sharp", "go", "typescript", "powershell" },
@@ -23,13 +23,14 @@ return {
                 -- Instead of true it can also be a list of languages
                 additional_vim_regex_highlighting = false,
             },
-        }
+        },
     },
     {
-        'nvim-treesitter/nvim-treesitter-textobjects',
+        "nvim-treesitter/nvim-treesitter-textobjects",
         dependencies = {
-            'nvim-treesitter/nvim-treesitter',
+            "nvim-treesitter/nvim-treesitter",
         },
+        enabled = false,
         opts = {
             textobjects = {
                 select = {
@@ -43,7 +44,7 @@ return {
             },
         },
         config = function(_, opts)
-            require 'nvim-treesitter.configs'.setup(opts)
+            require("nvim-treesitter.configs").setup(opts)
         end,
     },
 }
