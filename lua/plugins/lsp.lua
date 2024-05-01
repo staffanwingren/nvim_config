@@ -1,6 +1,14 @@
 return {
     {
         "williamboman/mason.nvim",
+        cmd = {
+            "Mason",
+            "MasonInstall",
+            "MasonUninstall",
+            "MasonUninstallAll",
+            "MasonLog",
+            "MasonUpdate",
+        },
         opts = {},
     },
     {
@@ -10,6 +18,7 @@ return {
             "Hoffs/omnisharp-extended-lsp.nvim",
         },
         config = function()
+            local cmd_ext = vim.loop.os_uname().sysname == "Windows_NT" and ".cmd" or ""
             local lspconfig = require "lspconfig"
             local mason_pac = vim.fn.stdpath "data" .. "/mason/packages/"
             local mason_bin = vim.fn.stdpath "data" .. "/mason/bin/"
@@ -30,7 +39,7 @@ return {
 
                 --vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
                 --vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-                vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
+                --vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
 
                 vim.keymap.set("i", "<M-k>", "<Esc>:LspOverloadsSignature<CR>a", opts)
                 vim.keymap.set("n", "<M-k>", ":LspOverloadsSignature<CR>", opts)
@@ -50,7 +59,7 @@ return {
             end
 
             lspconfig["omnisharp"].setup {
-                cmd = { mason_bin .. "omnisharp.cmd" },
+                cmd = { mason_bin .. "omnisharp" .. cmd_ext },
                 on_attach = on_attach,
                 handlers = {
                     ["textDocument/definition"] = require("omnisharp_extended").handler,
@@ -71,13 +80,13 @@ return {
             }
 
             lspconfig["gopls"].setup{
-                cmd = { mason_bin .. "gopls.cmd" },
+                cmd = { mason_bin .. "gopls" .. cmd_ext },
                 on_attach = on_attach,
             }
 
             lspconfig["tsserver"].setup{
                 cmd = {
-                    mason_bin .. "typescript-language-server.cmd",
+                    mason_bin .. "typescript-language-server" .. cmd_ext,
                     "--stdio",
                 },
                 on_attach = on_attach,
@@ -85,7 +94,7 @@ return {
 
             lspconfig["bicep"].setup{
                 cmd = {
-                    mason_bin .. "bicep-lsp.cmd",
+                    mason_bin .. "bicep-lsp" .. cmd_ext,
                 },
                 on_attach = on_attach,
             }
@@ -97,7 +106,7 @@ return {
 
             lspconfig["lua_ls"].setup{
                 cmd = {
-                    mason_bin .. "lua-language-server.cmd",
+                    mason_bin .. "lua-language-server" .. cmd_ext,
                 },
                 on_attach = on_attach,
                 on_init = function(client)
