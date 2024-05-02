@@ -9,14 +9,22 @@ return {
             "MasonLog",
             "MasonUpdate",
         },
+        lazy = true,
         opts = {},
+    },
+    {
+        "folke/neodev.nvim",
+        lazy = true,
+        opts = {}
     },
     {
         "neovim/nvim-lspconfig",
         dependencies = {
             "Issafalcon/lsp-overloads.nvim",
             "Hoffs/omnisharp-extended-lsp.nvim",
+            "folke/neodev.nvim",
         },
+        event = { "BufReadPre", "BufNewFile" },
         config = function()
             local cmd_ext = vim.loop.os_uname().sysname == "Windows_NT" and ".cmd" or ""
             local lspconfig = require "lspconfig"
@@ -79,12 +87,12 @@ return {
                 enable_ms_build_load_projects_on_demand = false,
             }
 
-            lspconfig["gopls"].setup{
+            lspconfig["gopls"].setup {
                 cmd = { mason_bin .. "gopls" .. cmd_ext },
                 on_attach = on_attach,
             }
 
-            lspconfig["tsserver"].setup{
+            lspconfig["tsserver"].setup {
                 cmd = {
                     mason_bin .. "typescript-language-server" .. cmd_ext,
                     "--stdio",
@@ -92,54 +100,23 @@ return {
                 on_attach = on_attach,
             }
 
-            lspconfig["bicep"].setup{
+            lspconfig["bicep"].setup {
                 cmd = {
                     mason_bin .. "bicep-lsp" .. cmd_ext,
                 },
                 on_attach = on_attach,
             }
 
-            lspconfig["powershell_es"].setup{
+            lspconfig["powershell_es"].setup {
                 bundle_path = mason_pac .. "powershell-editor-services/PowerShellEditorServices",
                 on_attach = on_attach,
             }
 
-            lspconfig["lua_ls"].setup{
+            lspconfig["lua_ls"].setup {
                 cmd = {
                     mason_bin .. "lua-language-server" .. cmd_ext,
                 },
                 on_attach = on_attach,
-                on_init = function(client)
-                    local path = client.workspace_folders[1].name
-                    if
-                        not vim.loop.fs_stat(path .. "/.luarc.json") and not vim.loop.fs_stat(path .. "/.luarc.jsonc")
-                    then
-                        client.config.settings = vim.tbl_deep_extend("force", client.config.settings, {
-                            Lua = {
-                                runtime = {
-                                    -- Tell the language server which version of Lua you're using
-                                    -- (most likely LuaJIT in the case of Neovim)
-                                    version = "LuaJIT",
-                                },
-                                -- Make the server aware of Neovim runtime files
-                                workspace = {
-                                    checkThirdParty = false,
-                                    library = {
-                                        vim.env.VIMRUNTIME,
-                                        -- "${3rd}/luv/library"
-                                        -- "${3rd}/busted/library",
-                                    },
-                                    -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-                                    -- library = vim.api.nvim_get_runtime_file("", true)
-                                },
-                            },
-                        })
-
-                        client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
-                    end
-
-                    return true
-                end,
             }
         end,
     },

@@ -1,7 +1,8 @@
 return {
-  "antoinemadec/FixCursorHold.nvim",
-  "nvim-treesitter/nvim-treesitter",
-  "Issafalcon/neotest-dotnet",
+  {
+    "Issafalcon/neotest-dotnet",
+    lazy = true,
+  },
   {
     "nvim-neotest/neotest",
     dependencies = {
@@ -10,6 +11,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "Issafalcon/neotest-dotnet",
     },
+    enabled = false,
     opts = function()
       return {
         adapters = {

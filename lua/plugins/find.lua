@@ -10,6 +10,9 @@ return {
         version = "^1.0.0",
       },
     },
+    cmd = {
+      "Telescope",
+    },
     keys = {
       {
         '<leader>tb', ':Telescope buffers path_display={"tail"}<CR>', mode = 'n', desc = 'Telescope buffer search'
@@ -71,9 +74,11 @@ return {
   {
     'nvim-telescope/telescope-fzf-native.nvim',
     build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+    lazy = true,
   },
   {
     'ahmedkhalf/project.nvim',
+    lazy = true,
     opts = {
       -- Manual mode doesn't automatically change your root directory, so you have
       -- the option to manually do so using `:ProjectRoot` command.
@@ -87,7 +92,7 @@ return {
 
       -- All the patterns used to detect root dir, when **"pattern"** is in
       -- detection_methods
-      patterns = { ".git", "*.sln", "Makefile", "package.json", "_darcs", ".hg", ".bzr", ".svn", },
+      patterns = { ".git", "*.sln", "Makefile", "_darcs", ".hg", ".bzr", ".svn", },
 
       -- Table of lsp clients to ignore by name
       -- eg: { "efm", ... }

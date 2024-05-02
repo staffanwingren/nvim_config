@@ -20,6 +20,14 @@ return {
         'nvim-telescope/telescope.nvim',
         'nvim-telescope/telescope-dap.nvim',
     },
+    keys = {
+        "<F6>",
+        "<F8>",
+        "<F9>",
+        "<S-F9>",
+        "<F10>",
+        "<F11>",
+    },
     config = function()
         local dap = require('dap')
         local install_dir = vim.fn.stdpath("data") .. "/mason/packages"
