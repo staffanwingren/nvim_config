@@ -47,4 +47,8 @@ return {
             require("nvim-treesitter.configs").setup(opts)
         end,
     },
+    {
+        "jlcrochet/vim-razor",
+        ft = { "cshtml", "razor" },
+    },
 }
