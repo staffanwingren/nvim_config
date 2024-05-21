@@ -112,6 +112,11 @@ return {
                 on_attach = on_attach,
             }
 
+            lspconfig["elmls"].setup{
+                cmd = { mason_bin .. "elm-language-server" .. cmd_ext },
+                on_attach = on_attach,
+            }
+
             lspconfig["lua_ls"].setup {
                 cmd = {
                     mason_bin .. "lua-language-server" .. cmd_ext,
