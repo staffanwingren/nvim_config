@@ -36,7 +36,10 @@ return {
         '<leader>tr', ':Telescope registers<CR>', mode = 'n', desc = 'Telescope registers'
       },
       {
-        '<leader>ts', ':Telescope lsp_workspace_symbols<CR>', mode = 'n', desc = 'Telescope symbol search'
+        '<leader>ts', ':Telescope lsp_document_symbols<CR>', mode = 'n', desc = 'Telescope symbol search'
+      },
+      {
+        '<leader>tS', ':Telescope lsp_workspace_symbols<CR>', mode = 'n', desc = 'Telescope symbol search'
       },
       {
         '<leader>tt', ':Telescope resume<CR>', mode = 'n', desc = 'Telescope previous search'
