@@ -123,6 +123,14 @@ return {
                 },
                 on_attach = on_attach,
             }
+
+            lspconfig["marksman"].setup {
+                cmd = {
+                    mason_bin .. "marksman" .. cmd_ext,
+                    "server"
+                },
+                on_attach = on_attach,
+            }
         end,
     },
 }
