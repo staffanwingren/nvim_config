@@ -15,7 +15,7 @@ return {
     {
         "folke/neodev.nvim",
         lazy = true,
-        opts = {}
+        opts = {},
     },
     {
         "neovim/nvim-lspconfig",
@@ -41,9 +41,9 @@ return {
                 vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
                 vim.keymap.set("n", "<leader>R", vim.lsp.buf.rename, opts)
                 vim.keymap.set("n", "<leader>r", vim.lsp.buf.code_action, opts)
-                vim.keymap.set("n", "<leader>gq", vim.lsp.buf.format, opts)
+                --vim.keymap.set("n", "<leader>gq", vim.lsp.buf.format, opts)
                 vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-                vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+                vim.keymap.set("n", "<leader>k", vim.lsp.buf.signature_help, opts)
 
                 --vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
                 --vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -87,6 +87,11 @@ return {
                 enable_ms_build_load_projects_on_demand = false,
             }
 
+            --lspconfig["csharp_ls"].setup {
+            --    cmd = { mason_bin .. "csharp-ls" .. cmd_ext },
+            --    on_attach = on_attach,
+            --}
+
             lspconfig["gopls"].setup {
                 cmd = { mason_bin .. "gopls" .. cmd_ext },
                 on_attach = on_attach,
@@ -112,17 +117,17 @@ return {
                 on_attach = on_attach,
             }
 
-            lspconfig["elmls"].setup{
+            lspconfig["elmls"].setup {
                 cmd = { mason_bin .. "elm-language-server" .. cmd_ext },
                 on_attach = on_attach,
             }
 
-            lspconfig["lua_ls"].setup {
-                cmd = {
-                    mason_bin .. "lua-language-server" .. cmd_ext,
-                },
-                on_attach = on_attach,
-            }
+            --lspconfig["lua_ls"].setup {
+            --    cmd = {
+            --        mason_bin .. "lua-language-server" .. cmd_ext,
+            --    },
+            --    on_attach = on_attach,
+            --}
         end,
     },
 }

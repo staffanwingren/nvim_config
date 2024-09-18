@@ -26,3 +26,6 @@ vim.keymap.set({ 'n', 'v' }, '<Leader>y', '"+y', { desc = 'Yank to clipboard' })
 vim.keymap.set({ 'n', 'v' }, '<Leader>p', '"+p', { desc = 'Paste (aft) from clipboard' })
 vim.keymap.set({ 'n', 'v' }, '<Leader>P', '"+P', { desc = 'Past (for) from clipboard' })
 vim.keymap.set('n', '<Leader>s', '<CMD>%s/\\s\\+$//g<CR>', { desc = 'Strip trailing whitespace' })
+
+vim.keymap.set('n', '<C-j>', '10j', { desc = 'Move 10 lines down' })
+vim.keymap.set('n', '<C-k>', '10k', { desc = 'Move 10 lines up' })

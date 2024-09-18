@@ -182,12 +182,12 @@ return {
 
             local wk = require "which-key"
 
-            wk.register {
-                ["<Leader>b"] = { name = "Buffer..." },
-                ["<Leader>k"] = { name = "Quickmaps..." },
-                ["<Leader>r"] = { name = "Refactor..." },
-                ["<Leader>s"] = { name = "Debug..." },
-                ["<Leader>t"] = { name = "Telescope..." },
+            wk.add {
+              { "<Leader>r", group = "Refactor..." },
+              { "<Leader>b", group = "Buffer..." },
+              { "<Leader>t", group = "Telescope..." },
+              { "<Leader>s", group = "Debug..." },
+              { "<Leader>k", group = "Quickmaps..." },
             }
         end,
     },

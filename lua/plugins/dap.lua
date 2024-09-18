@@ -21,6 +21,7 @@ return {
         'nvim-telescope/telescope-dap.nvim',
     },
     keys = {
+        "<F5>",
         "<F6>",
         "<F8>",
         "<F9>",
