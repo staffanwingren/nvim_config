@@ -13,10 +13,15 @@ return {
       "Issafalcon/neotest-dotnet",
     },
     cmd = { "Neotest" },
-    opts = function()
-      return {
+    config = function()
+      require'neotest'.setup{
         adapters = {
-          require("neotest-dotnet")
+          require("neotest-dotnet"){
+            dap = {
+              adapter_name = "coreclr"
+            },
+            discovery_root = "solution",
+          }
         },
       }
     end,

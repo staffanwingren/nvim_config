@@ -1,111 +1,66 @@
 return {
-    'mfussenegger/nvim-dap',
-    dependencies = {
-        {
-            'rcarriga/nvim-dap-ui',
-            dependencies = {
-                'theHamsta/nvim-dap-virtual-text',
-            },
-            config = function()
-                local dapui = require('dapui')
-                dapui.setup()
-                vim.keymap.set(
-                    'n',
-                    '<F7>',
-                    function() dapui.toggle() end,
-                    { desc = 'Debug UI Toggle' }
-                )
-            end,
+    {
+        'rcarriga/nvim-dap-ui',
+        dependencies = {
+            'mfussenegger/nvim-dap',
+            'nvim-neotest/nvim-nio',
         },
-        'nvim-telescope/telescope.nvim',
-        'nvim-telescope/telescope-dap.nvim',
+        keys = {
+            {'<F7>', function() require'dapui'.toggle() end, desc = 'Debug UI Toggle' },
+            { '<F5>', function() require'dap'.continue() end, desc = 'Debug Continue' },
+            { '<F6>', function() require'dap'.run_last() end, desc = 'Debug Run Last' },
+            { '<F8>', function() require'dap'.repl.open() end, desc = 'Repl Open' },
+            { '<F9>', function() require'dap'.toggle_breakpoint() end, desc = 'Toggle Breakpoint' },
+            { '<S-F9>', function() require'dap'.step_out() end, desc = 'Debug Step Out' },
+            { '<F10>', function() require'dap'.step_over() end, desc = 'Debug Step Over' },
+            { '<F11>', function() require'dap'.step_into() end, desc = 'Debug Step Into' },
+        },
+        config = function()
+            require'dapui'.setup()
+        end,
     },
-    keys = {
-        "<F5>",
-        "<F6>",
-        "<F8>",
-        "<F9>",
-        "<S-F9>",
-        "<F10>",
-        "<F11>",
-    },
-    config = function()
-        local dap = require('dap')
-        local install_dir = vim.fn.stdpath("data") .. "/mason/packages"
-        local pick_process = require('dap.utils').pick_process
+    {
+        'mfussenegger/nvim-dap',
+        lazy = true,
+        dependencies = {
+            'nvim-telescope/telescope.nvim',
+            'nvim-telescope/telescope-dap.nvim',
+        },
+        config = function()
+            local dap = require('dap')
+            local install_dir = vim.fn.stdpath("data") .. "/mason/packages"
+            local pick_process = require('dap.utils').pick_process
 
-        require('dapui').setup()
+            dap.adapters.coreclr = {
+                type = 'executable',
+                command = install_dir .. '/netcoredbg/netcoredbg/netcoredbg.exe',
+                args = { '--interpreter=vscode' }
+            }
 
-        dap.adapters.coreclr = {
-            type = 'executable',
-            command = install_dir .. '/netcoredbg/netcoredbg/netcoredbg.exe',
-            args = { '--interpreter=vscode' }
-        }
+            dap.configurations.cs = {
+                {
+                    type = "coreclr",
+                    name = "launch - netcoredbg",
+                    request = "launch",
+                    program = function()
+                        return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "", "file")
+                    end,
+                },
+                {
+                    type = "coreclr",
+                    name = "attach - netcoredbg",
+                    request = "attach",
+                    processId = pick_process,
+                },
+            }
 
-        dap.configurations.cs = {
-            {
-              type = "coreclr",
-              name = "launch - netcoredbg",
-              request = "launch",
-              program = function()
-                return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "", "file")
-              end,
-            },
-            {
-              type = "coreclr",
-              name = "attach - netcoredbg",
-              request = "attach",
-              processId = pick_process,
-            },
-        }
+            dap.adapters.chrome = {
+                type = "executable",
+                command = "node",
+                args = { install_dir .. '/chrome-debug-adapter/out/src/chromeDebug.js' }
+            }
 
-        dap.adapters.chrome = {
-            type = "executable",
-            command = "node",
-            args = { install_dir .. '/chrome-debug-adapter/out/src/chromeDebug.js' }
-        }
-
-        vim.keymap.set(
-            'n',
-            '<F6>',
-            function() dap.run_last() end,
-            { desc = 'Debug Run Last' }
-        )
-        vim.keymap.set(
-            'n',
-            '<F5>',
-            function() dap.continue() end,
-            { desc = 'Debug Continue' }
-        )
-        vim.keymap.set(
-            'n',
-            '<F10>',
-            function() dap.step_over() end,
-            { desc = 'Debug Step Over' }
-        )
-        vim.keymap.set(
-            'n',
-            '<F11>',
-            function() dap.step_into() end,
-            { desc = 'Debug Step Into' }
-        )
-        vim.keymap.set(
-            'n',
-            '<S-F9>',
-            function() dap.step_out() end,
-            { desc = 'Debug Step Out' }
-        )
-        vim.keymap.set(
-            'n',
-            '<F8>',
-            function() dap.repl.open() end,
-            { desc = 'Repl Open' }
-        )
-        vim.keymap.set(
-            'n',
-            '<F9>',
-            function() dap.toggle_breakpoint() end,
-            { desc = 'Toggle Breakpoint' }
-        )
-    end,
+            require('telescope').load_extension('dap')
+        end,
+    }
 }

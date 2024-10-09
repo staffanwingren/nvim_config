@@ -13,20 +13,15 @@ return {
         opts = {},
     },
     {
-        "folke/neodev.nvim",
-        lazy = true,
-        opts = {},
-    },
-    {
         "neovim/nvim-lspconfig",
         dependencies = {
             "Issafalcon/lsp-overloads.nvim",
             "Hoffs/omnisharp-extended-lsp.nvim",
-            "folke/neodev.nvim",
         },
         event = { "BufReadPre", "BufNewFile" },
         config = function()
-            local cmd_ext = vim.loop.os_uname().sysname == "Windows_NT" and ".cmd" or ""
+            local is_win = vim.loop.os_uname().sysname == "Windows_NT"
+            local cmd_ext = is_win and ".cmd" or ""
             local lspconfig = require "lspconfig"
             local mason_pac = vim.fn.stdpath "data" .. "/mason/packages/"
             local mason_bin = vim.fn.stdpath "data" .. "/mason/bin/"
@@ -67,7 +62,7 @@ return {
             end
 
             lspconfig["omnisharp"].setup {
-                cmd = { mason_bin .. "omnisharp" .. cmd_ext },
+                cmd = { is_win and "omnisharp.exe" or "omnisharp" },
                 on_attach = on_attach,
                 handlers = {
                     ["textDocument/definition"] = require("omnisharp_extended").handler,
@@ -87,17 +82,12 @@ return {
                 enable_ms_build_load_projects_on_demand = false,
             }
 
-            --lspconfig["csharp_ls"].setup {
-            --    cmd = { mason_bin .. "csharp-ls" .. cmd_ext },
-            --    on_attach = on_attach,
-            --}
-
             lspconfig["gopls"].setup {
                 cmd = { mason_bin .. "gopls" .. cmd_ext },
                 on_attach = on_attach,
             }
 
-            lspconfig["tsserver"].setup {
+            lspconfig["ts_ls"].setup {
                 cmd = {
                     mason_bin .. "typescript-language-server" .. cmd_ext,
                     "--stdio",
