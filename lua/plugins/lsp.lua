@@ -103,7 +103,7 @@ return {
             }
 
             lspconfig["powershell_es"].setup {
-                bundle_path = mason_pac .. "powershell-editor-services/PowerShellEditorServices",
+                bundle_path = mason_pac .. "powershell-editor-services",
                 on_attach = on_attach,
             }
 
