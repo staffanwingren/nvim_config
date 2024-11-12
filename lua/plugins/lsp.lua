@@ -36,14 +36,8 @@ return {
                 vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
                 vim.keymap.set("n", "<leader>R", vim.lsp.buf.rename, opts)
                 vim.keymap.set("n", "<leader>r", vim.lsp.buf.code_action, opts)
-                --vim.keymap.set("n", "<leader>gq", vim.lsp.buf.format, opts)
                 vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
                 vim.keymap.set("n", "<leader>k", vim.lsp.buf.signature_help, opts)
-
-                --vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
-                --vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-                --vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
-
                 vim.keymap.set("i", "<M-k>", "<Esc>:LspOverloadsSignature<CR>a", opts)
                 vim.keymap.set("n", "<M-k>", ":LspOverloadsSignature<CR>", opts)
 
@@ -73,13 +67,44 @@ return {
                     "cshtml",
                     "razor",
                 },
-                enable_editorconfig_support = true,
-                enable_roslyn_analysers = true,
-                organize_imports_on_format = true,
-                enable_import_completion = true,
-                sdk_include_prereleases = true,
-                analyze_open_documents_only = false,
-                enable_ms_build_load_projects_on_demand = false,
+                settings = {
+                  FormattingOptions = {
+                    -- Enables support for reading code style, naming convention and analyzer
+                    -- settings from .editorconfig.
+                    EnableEditorConfigSupport = true,
+                    -- Specifies whether 'using' directives should be grouped and sorted during
+                    -- document formatting.
+                    OrganizeImports = true,
+                  },
+                  MsBuild = {
+                    -- If true, MSBuild project system will only load projects for files that
+                    -- were opened in the editor. This setting is useful for big C# codebases
+                    -- and allows for faster initialization of code navigation features only
+                    -- for projects that are relevant to code that is being edited. With this
+                    -- setting enabled OmniSharp may load fewer projects and may thus display
+                    -- incomplete reference lists for symbols.
+                    LoadProjectsOnDemand = nil,
+                  },
+                  RoslynExtensionsOptions = {
+                    -- Enables support for roslyn analyzers, code fixes and rulesets.
+                    EnableAnalyzersSupport = true,
+                    -- Enables support for showing unimported types and unimported extension
+                    -- methods in completion lists. When committed, the appropriate using
+                    -- directive will be added at the top of the current file. This option can
+                    -- have a negative impact on initial completion responsiveness,
+                    -- particularly for the first few completion sessions after opening a
+                    -- solution.
+                    EnableImportCompletion = true,
+                    -- Only run analyzers against open files when 'enableRoslynAnalyzers' is
+                    -- true
+                    AnalyzeOpenDocumentsOnly = false,
+                  },
+                  Sdk = {
+                    -- Specifies whether to include preview versions of the .NET SDK when
+                    -- determining which version to use for project loading.
+                    IncludePrereleases = true,
+                  },
+                },
             }
 
             lspconfig["gopls"].setup {
@@ -113,9 +138,6 @@ return {
             }
 
             lspconfig["lua_ls"].setup {
-                cmd = {
-                    mason_bin .. "lua-language-server" .. cmd_ext,
-                },
                 on_attach = on_attach,
             }
 

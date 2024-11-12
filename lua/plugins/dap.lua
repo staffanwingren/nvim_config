@@ -22,45 +22,40 @@ return {
     {
         'mfussenegger/nvim-dap',
         lazy = true,
-        dependencies = {
-            'nvim-telescope/telescope.nvim',
-            'nvim-telescope/telescope-dap.nvim',
-        },
         config = function()
             local dap = require('dap')
-            local install_dir = vim.fn.stdpath("data") .. "/mason/packages"
-            local pick_process = require('dap.utils').pick_process
+            local mason_bin = vim.fn.stdpath("data") .. "/mason/bin/"
+            local install_dir = vim.fn.stdpath("data") .. "/mason/packages/"
 
             dap.adapters.coreclr = {
                 type = 'executable',
-                command = install_dir .. '/netcoredbg/netcoredbg/netcoredbg.exe',
+                --command = mason_bin .. "netcoredbg.cmd",
+                command = install_dir .. 'netcoredbg/netcoredbg/netcoredbg.exe',
                 args = { '--interpreter=vscode' }
             }
 
             dap.configurations.cs = {
-                {
-                    type = "coreclr",
-                    name = "launch - netcoredbg",
-                    request = "launch",
-                    program = function()
-                        return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "", "file")
-                    end,
-                },
+            --    {
+            --        type = "coreclr",
+            --        name = "launch - netcoredbg",
+            --        request = "launch",
+            --        program = function()
+            --            return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "", "file")
+            --        end,
+            --    },
                 {
                     type = "coreclr",
                     name = "attach - netcoredbg",
                     request = "attach",
-                    processId = pick_process,
+                    processId = require('dap.utils').pick_process,
                 },
             }
 
-            dap.adapters.chrome = {
-                type = "executable",
-                command = "node",
-                args = { install_dir .. '/chrome-debug-adapter/out/src/chromeDebug.js' }
-            }
-
-            require('telescope').load_extension('dap')
+            --dap.adapters.chrome = {
+            --    type = "executable",
+            --    command = "node",
+            --    args = { install_dir .. 'chrome-debug-adapter/out/src/chromeDebug.js' }
+            --}
         end,
     }
 }

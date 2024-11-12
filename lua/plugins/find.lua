@@ -1,6 +1,7 @@
 return {
   {
     'nvim-telescope/telescope.nvim',
+    lazy = false,
     branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -9,6 +10,7 @@ return {
         'nvim-telescope/telescope-live-grep-args.nvim',
         version = "^1.0.0",
       },
+      "nvim-telescope/telescope-ui-select.nvim",
     },
     cmd = {
       "Telescope",
@@ -70,8 +72,9 @@ return {
 
       ts.load_extension 'fzf'
       ts.load_extension 'projects'
-      ts.load_extension 'dap'
+      --ts.load_extension 'dap'
       ts.load_extension 'live_grep_args'
+      ts.load_extension 'ui-select'
     end
   },
   {
