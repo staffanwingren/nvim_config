@@ -120,6 +120,10 @@ return {
                 on_attach = on_attach,
             }
 
+            --lspconfig["angularls"].setup {
+            --    on_attach = on_attach,
+            --}
+
             lspconfig["bicep"].setup {
                 cmd = {
                     mason_bin .. "bicep-lsp" .. cmd_ext,
