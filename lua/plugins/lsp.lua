@@ -116,7 +116,13 @@ return {
                 },
             }
 
-            lspconfig["lua_ls"].setup{}
+            if vim.fn.executable('lua-language-server') == 1 then
+                lspconfig["lua_ls"].setup{}
+            end
+
+            if vim.fn.executable('marksman') == 1 then
+                lspconfig['marksman'].setup{}
+            end
         end,
     }
 }
