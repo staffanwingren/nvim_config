@@ -13,6 +13,7 @@ return {
         xml = { "xmlformat" },
         cs = { "csharpier" },
         lua = { "stylua" },
+        fsharp = { "fantomas" },
       },
 --      formatters = {
 --        csharpier = {
@@ -21,7 +22,7 @@ return {
 --        },
 --      },
     },
-    ft = { "cs", "lua", "xml" },
+    ft = { "cs", "lua", "xml", "fs" },
     cmd = { "ConformInfo" },
     init = function()
       vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
