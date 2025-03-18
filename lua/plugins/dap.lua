@@ -19,37 +19,50 @@ return {
             require'dapui'.setup()
         end,
     },
+    --{
+    --    'mxsdev/nvim-dap-vscode-js',
+    --    config = function()
+    --        require('dap-vscode-js').setup{
+    --            debugger_path = "C:\\Users\\staffanw\\Development\\vscode-js-debug",
+    --            adapters = { 'pwa-node', 'pwa-chrome' },
+    --        }
+    --    end,
+    --},
     {
         'mfussenegger/nvim-dap',
         lazy = true,
         config = function()
             local dap = require('dap')
-            local mason_bin = vim.fn.stdpath("data") .. "/mason/bin/"
-            local install_dir = vim.fn.stdpath("data") .. "/mason/packages/"
+            --local install_dir = vim.fn.stdpath("data") .. "/mason/packages/"
 
-            dap.adapters.coreclr = {
-                type = 'executable',
-                --command = mason_bin .. "netcoredbg.cmd",
-                command = install_dir .. 'netcoredbg/netcoredbg/netcoredbg.exe',
-                args = { '--interpreter=vscode' }
-            }
+            local netcoredbg_exe = os.getenv("NETCOREDBG_EXE")
+            if netcoredbg_exe ~= nil and netcoredbg_exe ~= '' then
+                dap.adapters.coreclr = {
+                    type = 'executable',
+                    --command = mason_bin .. "netcoredbg.cmd",
+                    --command = install_dir .. 'netcoredbg/netcoredbg/netcoredbg.exe',
+                    command = netcoredbg_exe,
+                    args = { '--interpreter=vscode' }
+                }
 
-            dap.configurations.cs = {
-            --    {
-            --        type = "coreclr",
-            --        name = "launch - netcoredbg",
-            --        request = "launch",
-            --        program = function()
-            --            return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "", "file")
-            --        end,
-            --    },
-                {
-                    type = "coreclr",
-                    name = "attach - netcoredbg",
-                    request = "attach",
-                    processId = require('dap.utils').pick_process,
-                },
-            }
+                dap.configurations.cs = {
+                    {
+                        type = "coreclr",
+                        name = "attach - netcoredbg",
+                        request = "attach",
+                        processId = require('dap.utils').pick_process,
+                    },
+                }
+
+                dap.configurations.fsharp = {
+                    {
+                        type = "coreclr",
+                        name = "attach - netcoredbg",
+                        request = "attach",
+                        processId = require('dap.utils').pick_process,
+                    },
+                }
+            end
 
             --dap.adapters.chrome = {
             --    type = "executable",
