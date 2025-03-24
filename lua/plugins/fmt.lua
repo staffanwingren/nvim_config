@@ -1,31 +1,32 @@
 return {
-  {
-    "stevearc/conform.nvim",
-    opts = {
-      --log_level = vim.log.levels.TRACE,
-      format = {
-        timeout_ms = 5000,
-        async = false,       -- not recommended to change
-        quiet = false,       -- not recommended to change
-        lsp_fallback = true, -- not recommended to change
-      },
-      formatters_by_ft = {
-        xml = { "xmlformat" },
-        cs = { "csharpier" },
-        lua = { "stylua" },
-        fsharp = { "fantomas" },
-      },
---      formatters = {
---        csharpier = {
---          command = "dotnet-csharpier",
---          args = { "--write-stdout" },
---        },
---      },
+    {
+        "stevearc/conform.nvim",
+        ---@module "conform"
+        ---@type conform.setupOpts
+        opts = {
+            default_format_opts = {
+                timeout_ms = 7000,
+                lsp_fallback = "fallback",
+                async = true,
+            },
+            formatters_by_ft = {
+                xml = { "xmlformat" },
+                cs = { "csharpier" },
+                lua = { "stylua" },
+                fsharp = { "fantomas" },
+                markdown = { "markdownlint-cli2" },
+            },
+        },
+        keys = {
+            {
+                "<leader>gq",
+                function()
+                    require("conform").format()
+                end,
+                mode = { "n", "v" },
+            },
+        },
+        ft = { "cs", "lua", "xml", "fs" },
+        cmd = { "ConformInfo" },
     },
-    ft = { "cs", "lua", "xml", "fs" },
-    cmd = { "ConformInfo" },
-    init = function()
-      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-    end,
-  }
 }
