@@ -10,6 +10,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.textwidth = 80
 vim.opt.termguicolors = true
+vim.opt.foldlevelstart = 99
 
 vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "81"
