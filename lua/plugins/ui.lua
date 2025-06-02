@@ -14,41 +14,9 @@ return {
         end,
     },
     {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        priority = 950,
-        enabled = cs == "tokyonight",
-        config = function()
-            if cs == "tokyonight" then
-                vim.opt.background = "dark"
-                vim.cmd "colorscheme tokyonight"
-            end
-        end,
-    },
-    {
-        "rebelot/kanagawa.nvim",
-        lazy = false,
-        priority = 950,
-        enabled = cs == "kanagawa",
-        config = function()
-            if cs == "kanagawa" then
-                vim.opt.background = "dark"
-                vim.cmd "colorscheme kanagawa"
-            end
-        end,
-    },
-    {
-        "catppuccin/nvim",
-        lazy = false,
-        priority = 950,
-        enabled = cs == "catppuccin",
-        name = "catppuccin",
-        config = function()
-            if cs == "catppuccin" then
-                vim.opt.background = "dark"
-                vim.cmd.colorscheme "catppuccin"
-            end
-        end,
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        opts = {},
     },
     {
         "nvim-lualine/lualine.nvim",
@@ -197,5 +165,31 @@ return {
         opts = {
             -- add any custom options here
         },
+    },
+    {
+        'kristijanhusak/vim-dadbod-ui',
+        dependencies = {
+            {
+                'tpope/vim-dadbod',
+                lazy = true
+            },
+            {
+                'kristijanhusak/vim-dadbod-completion',
+                ft = { 'sql', 'mysql', 'plsql' },
+                lazy = true
+            },
+        },
+        cmd = {
+            'DBUI',
+            'DBUIToggle',
+            'DBUIAddConnection',
+            'DBUIFindBuffer',
+        },
+        init = function()
+            -- Your DBUI
+            -- configuration
+            --     vim.g.db_ui_use_nerd_fonts
+            --     = 1
+        end,
     },
 }
