@@ -26,6 +26,9 @@ return {
         '<leader>tF', ':Telescope git_files path_display={"tail"}<CR>', mode = 'n', desc = 'Telescope git search'
       },
       {
+        '<leader>to', ':Telescope oldfiles<CR>', mode = 'n', desc = 'Telescope recent files'
+      },
+      {
         '<leader>tg', ':Telescope live_grep<CR>', mode = 'n', desc = 'Telescope live grep'
       },
       {

@@ -155,6 +155,7 @@ return {
               { "<Leader>b", group = "Buffer..." },
               { "<Leader>t", group = "Telescope..." },
               { "<Leader>s", group = "Debug..." },
+              { "<Leader>i", group = "AI Assistant..." },
               { "<Leader>k", group = "Quickmaps..." },
             }
         end,
