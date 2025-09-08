@@ -32,8 +32,6 @@ return {
         },
         event = { "BufReadPre", "BufNewFile" },
         config = function()
-            local lspconfig = require('lspconfig')
-
             vim.api.nvim_create_autocmd('LspAttach', {
                 callback = function(args)
                     local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -76,7 +74,7 @@ return {
 
             local omnisharp_dll = os.getenv("OMNISHARP_DLL")
             if omnisharp_dll ~= nil and omnisharp_dll ~= '' then
-                lspconfig["omnisharp"].setup {
+                vim.lsp.config('omnisharp', {
                     cmd = { "dotnet", omnisharp_dll },
                     handlers = {
                         ["textDocument/definition"] = require("omnisharp_extended").handler,
@@ -119,25 +117,32 @@ return {
                             IncludePrereleases = true,
                         },
                     },
-                }
+                })
+                vim.lsp.enable('omnisharp')
             end
+
             --if vim.fn.executable('fsautocomplete') == 1 then
             --    lspconfig["fsautocomplete"].setup{}
             --end
 
             local bicep_dll = os.getenv("BICEP_LANGSRV_DLL")
             if bicep_dll ~= nil and bicep_dll ~= '' then
-                lspconfig["bicep"].setup {
-                    cmd = { "dotnet", bicep_dll },
-                }
+                vim.lsp.config('bicep', {
+                    cmd = { "dotnet", bicep_dll };
+                })
+                vim.lsp.enable('bicep')
             end
 
             if vim.fn.executable('lua-language-server') == 1 then
-                lspconfig["lua_ls"].setup{}
+                vim.lsp.enable('lua_ls')
             end
 
             if vim.fn.executable('marksman') == 1 then
-                lspconfig['marksman'].setup{}
+                vim.lsp.enable('marksman')
+            end
+
+            if vim.fn.executable('gopls') == 1 then
+                vim.lsp.enable('gopls')
             end
         end,
     },
