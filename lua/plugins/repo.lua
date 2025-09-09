@@ -15,12 +15,13 @@ return {
     },
     {
         "lewis6991/gitsigns.nvim",
-        enabled = false,
+        enabled = true,
         config = true,
     },
     {
       "echasnovski/mini.diff",
       version = "*",
+      enabled = false,
       config = function()
           require("mini.diff").setup{}
       end,
