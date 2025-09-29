@@ -7,6 +7,10 @@ return {
         lazy = true,
     },
     {
+        "echasnovski/mini.icons",
+        lazy = true,
+    },
+    {
         "nvim-neotest/nvim-nio",
         lazy = true,
     },
