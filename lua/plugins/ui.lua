@@ -51,6 +51,18 @@ return {
         },
     },
     {
+        "vimwiki/vimwiki",
+        init = function()
+            vim.g.vimwiki_list = {
+                {
+                    path = "~/repos/Private/wiki",
+                    syntax = "markdown",
+                    ext = "md",
+                }
+            }
+        end
+    },
+    {
         "nvimdev/dashboard-nvim",
         event = "VimEnter",
         config = function()
