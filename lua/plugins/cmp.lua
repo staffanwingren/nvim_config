@@ -86,5 +86,8 @@ return {
         config = function()
             require("mini.completion").setup()
         end,
+        init = function()
+            vim.g.completopt = "menu,menuone,noselect,popup"
+        end,
     },
 }

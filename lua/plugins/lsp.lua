@@ -32,45 +32,45 @@ return {
         },
         event = { "BufReadPre", "BufNewFile" },
         config = function()
-            vim.api.nvim_create_autocmd('LspAttach', {
-                callback = function(args)
-                    local client = vim.lsp.get_client_by_id(args.data.client_id)
-                    local opts = { buffer = args.bufnr, remap = false, silent = true }
-                    local optsWithDesc = function(desc)
-                        return vim.tbl_extend('keep', { desc = desc }, opts )
-                    end
+            --vim.api.nvim_create_autocmd('LspAttach', {
+            --    callback = function(args)
+            --        local client = vim.lsp.get_client_by_id(args.data.client_id)
+            --        local opts = { buffer = args.bufnr, remap = false, silent = true }
+            --        local optsWithDesc = function(desc)
+            --            return vim.tbl_extend('keep', { desc = desc }, opts )
+            --        end
 
-                    if client and client.supports_method('textDocument/definition') then
-                        vim.keymap.set("n", "gd", vim.lsp.buf.definition, optsWithDesc('LSP Definition'))
-                    end
-                    if client and client.supports_method('textDocument/declaration') then
-                        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, optsWithDesc('LSP Declaration'))
-                    end
-                    if client and client.supports_method('textDocument/implementation') then
-                        vim.keymap.set("n", "gri", vim.lsp.buf.implementation, optsWithDesc('LSP Implementation'))
-                    end
-                    if client and client.supports_method('textDocument/typeDefinition') then
-                        vim.keymap.set("n", "go", vim.lsp.buf.type_definition, optsWithDesc('LSP Type Definition'))
-                    end
-                    if client and client.supports_method('textDocument/references') then
-                        vim.keymap.set("n", "grr", vim.lsp.buf.references, optsWithDesc('LSP References'))
-                    end
-                    if client and client.supports_method('textDocument/rename') then
-                        vim.keymap.set("n", "grn", vim.lsp.buf.rename, optsWithDesc('LSP Rename'))
-                    end
-                    if client and client.supports_method('textDocument/codeAction') then
-                        vim.keymap.set({"n", "v"}, "gra", vim.lsp.buf.code_action, optsWithDesc('LSP Code Action'))
-                    end
-                    if client and client.supports_method('textDocument/documentSymbol') then
-                        vim.keymap.set("n", "gO", vim.lsp.buf.document_symbol, optsWithDesc('LSP Document Symbol'))
-                    end
-                    if client and client.supports_method('textDocument/signatureHelp') then
-                        vim.keymap.set("i", "<CTRL-S>", vim.lsp.buf.signature_help, optsWithDesc('LSP Signature Help'))
-                    end
-                    --vim.keymap.set("i", "<M-k>", "<Esc>:LspOverloadsSignature<CR>a", opts)
-                    --vim.keymap.set("n", "<M-k>", ":LspOverloadsSignature<CR>", opts)
-                end,
-            })
+            --        if client and client.supports_method('textDocument/definition') then
+            --            vim.keymap.set("n", "gd", vim.lsp.buf.definition, optsWithDesc('LSP Definition'))
+            --        end
+            --        if client and client.supports_method('textDocument/declaration') then
+            --            vim.keymap.set("n", "gD", vim.lsp.buf.declaration, optsWithDesc('LSP Declaration'))
+            --        end
+            --        if client and client.supports_method('textDocument/implementation') then
+            --            vim.keymap.set("n", "gri", vim.lsp.buf.implementation, optsWithDesc('LSP Implementation'))
+            --        end
+            --        if client and client.supports_method('textDocument/typeDefinition') then
+            --            vim.keymap.set("n", "go", vim.lsp.buf.type_definition, optsWithDesc('LSP Type Definition'))
+            --        end
+            --        if client and client.supports_method('textDocument/references') then
+            --            vim.keymap.set("n", "grr", vim.lsp.buf.references, optsWithDesc('LSP References'))
+            --        end
+            --        if client and client.supports_method('textDocument/rename') then
+            --            vim.keymap.set("n", "grn", vim.lsp.buf.rename, optsWithDesc('LSP Rename'))
+            --        end
+            --        if client and client.supports_method('textDocument/codeAction') then
+            --            vim.keymap.set({"n", "v"}, "gra", vim.lsp.buf.code_action, optsWithDesc('LSP Code Action'))
+            --        end
+            --        if client and client.supports_method('textDocument/documentSymbol') then
+            --            vim.keymap.set("n", "gO", vim.lsp.buf.document_symbol, optsWithDesc('LSP Document Symbol'))
+            --        end
+            --        if client and client.supports_method('textDocument/signatureHelp') then
+            --            vim.keymap.set("i", "<CTRL-S>", vim.lsp.buf.signature_help, optsWithDesc('LSP Signature Help'))
+            --        end
+            --        --vim.keymap.set("i", "<M-k>", "<Esc>:LspOverloadsSignature<CR>a", opts)
+            --        --vim.keymap.set("n", "<M-k>", ":LspOverloadsSignature<CR>", opts)
+            --    end,
+            --})
 
             local omnisharp_dll = os.getenv("OMNISHARP_DLL")
             if omnisharp_dll ~= nil and omnisharp_dll ~= '' then
@@ -122,7 +122,7 @@ return {
             end
 
             --if vim.fn.executable('fsautocomplete') == 1 then
-            --    lspconfig["fsautocomplete"].setup{}
+            --    vim.lsp.enable('fsautocomplete')
             --end
 
             local bicep_dll = os.getenv("BICEP_LANGSRV_DLL")
@@ -148,6 +148,7 @@ return {
     },
     {
         "ionide/Ionide-vim",
+        enabled = true,
         dependencies = {
             "neovim/nvim-lspconfig",
         },
