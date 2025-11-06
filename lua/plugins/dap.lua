@@ -19,28 +19,16 @@ return {
             require'dapui'.setup()
         end,
     },
-    --{
-    --    'mxsdev/nvim-dap-vscode-js',
-    --    config = function()
-    --        require('dap-vscode-js').setup{
-    --            debugger_path = "C:\\Users\\staffanw\\Development\\vscode-js-debug",
-    --            adapters = { 'pwa-node', 'pwa-chrome' },
-    --        }
-    --    end,
-    --},
     {
         'mfussenegger/nvim-dap',
         lazy = true,
         config = function()
             local dap = require('dap')
-            --local install_dir = vim.fn.stdpath("data") .. "/mason/packages/"
 
             local netcoredbg_exe = os.getenv("NETCOREDBG_EXE")
             if netcoredbg_exe ~= nil and netcoredbg_exe ~= '' then
                 dap.adapters.coreclr = {
                     type = 'executable',
-                    --command = mason_bin .. "netcoredbg.cmd",
-                    --command = install_dir .. 'netcoredbg/netcoredbg/netcoredbg.exe',
                     command = netcoredbg_exe,
                     args = { '--interpreter=vscode' }
                 }
@@ -63,12 +51,6 @@ return {
                     },
                 }
             end
-
-            --dap.adapters.chrome = {
-            --    type = "executable",
-            --    command = "node",
-            --    args = { install_dir .. 'chrome-debug-adapter/out/src/chromeDebug.js' }
-            --}
         end,
     }
 }
