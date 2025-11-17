@@ -6,9 +6,9 @@ return {
             'nvim-neotest/nvim-nio',
         },
         keys = {
-            {'<F7>', function() require'dapui'.toggle() end, desc = 'Debug UI Toggle' },
             { '<F5>', function() require'dap'.continue() end, desc = 'Debug Continue' },
             { '<F6>', function() require'dap'.run_last() end, desc = 'Debug Run Last' },
+            { '<F7>', function() require'dapui'.toggle() end, desc = 'Debug UI Toggle' },
             { '<F8>', function() require'dap'.repl.open() end, desc = 'Repl Open' },
             { '<F9>', function() require'dap'.toggle_breakpoint() end, desc = 'Toggle Breakpoint' },
             { '<S-F9>', function() require'dap'.step_out() end, desc = 'Debug Step Out' },
@@ -52,5 +52,12 @@ return {
                 }
             end
         end,
+    },
+    {
+        'leoluz/nvim-dap-go',
+        dependencies = {
+            'mfussenegger/nvim-dap',
+            'nvim-treesitter/nvim-treesitter',
+        },
     }
 }
