@@ -105,6 +105,10 @@ return {
             if vim.fn.executable('gopls') == 1 then
                 vim.lsp.enable('gopls')
             end
+
+            if vim.fn.executable('typescript-language-server') == 1 then
+                vim.lsp.enable('ts_ls')
+            end
         end,
     },
     {

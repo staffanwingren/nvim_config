@@ -21,13 +21,9 @@ return {
     {
         "vimwiki/vimwiki",
         init = function()
-            vim.g.vimwiki_list = {
-                {
-                    path = "~/repos/Private/wiki",
-                    --syntax = "markdown",
-                    --ext = "md",
-                }
-            }
+            local config = loadfile(vim.env.HOME .. "/.vimwiki_list.lua")
+            local vimwiki_list = config and config() or {}
+            vim.g.vimwiki_list = vimwiki_list
             vim.g.vimwiki_dir_link = 'index'
         end
     },
@@ -144,35 +140,10 @@ return {
     },
     {
         "folke/persistence.nvim",
+        enabled = false,
         event = "BufReadPre", -- this will only start session saving when an actual file was opened
         opts = {
             -- add any custom options here
         },
-    },
-    {
-        'kristijanhusak/vim-dadbod-ui',
-        dependencies = {
-            {
-                'tpope/vim-dadbod',
-                lazy = true
-            },
-            {
-                'kristijanhusak/vim-dadbod-completion',
-                ft = { 'sql', 'mysql', 'plsql' },
-                lazy = true
-            },
-        },
-        cmd = {
-            'DBUI',
-            'DBUIToggle',
-            'DBUIAddConnection',
-            'DBUIFindBuffer',
-        },
-        init = function()
-            -- Your DBUI
-            -- configuration
-            --     vim.g.db_ui_use_nerd_fonts
-            --     = 1
-        end,
     },
 }
