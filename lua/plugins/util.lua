@@ -19,6 +19,11 @@ return {
         lazy = true,
     },
     {
+        "vhyrro/luarocks.nvim",
+        priority = 1000,
+        config = true,
+    },
+    {
         "antoinemadec/FixCursorHold.nvim",
         lazy = true,
     },
