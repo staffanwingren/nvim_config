@@ -33,13 +33,10 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         config = function()
             local omnisharp_dll = os.getenv("OMNISHARP_DLL")
-            if omnisharp_dll ~= nil and omnisharp_dll ~= '' then
+            if omnisharp_dll then
                 local pid = vim.fn.getpid()
                 vim.lsp.config('omnisharp', {
                     cmd = { "dotnet", omnisharp_dll, "-z", "--hostPID", pid, "DotNet:enablePackageRestore=false", "--encoding", "utf-8", "--languageserver" },
-                    handlers = {
-                        ["textDocument/definition"] = require("omnisharp_extended").handler,
-                    },
                     settings = {
                         FormattingOptions = {
                             -- Enables support for reading code style, naming convention and analyzer

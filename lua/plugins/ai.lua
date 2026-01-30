@@ -11,7 +11,7 @@ return {
         end,
     },
     {
-        dir = "~/repos/private/copilotchat.nvim",
+        dir = os.getenv("COPILOTCHATNVIM_DIR") or "~/repos/private/copilotchat.nvim",
         --"CopilotC-Nvim/CopilotChat.nvim",
         enabled = true,
         dependencies = {
